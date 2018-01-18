@@ -9,6 +9,7 @@ export default {
   name: 'google-map',
   props: ['name'],
   methods:{   
+
     centerMapToCurrentLocation(){
       navigator.geolocation.getCurrentPosition((position) => {
         var currentLocation = {
@@ -18,12 +19,16 @@ export default {
         console.log(currentLocation);
         this.map.panTo(new google.maps.LatLng(currentLocation.lat, currentLocation.lng));
         this.map.setZoom(20);
-        var marker =  new google.maps.Marker({
-          position: new google.maps.LatLng(currentLocation.lat, currentLocation.lng),
-          map:this.map
-        });
-
+        this.addMarker(currentLocation);
         //Watch position, pour la mise à jour de la position du gars
+      });      
+    },
+
+    addMarker(LatLngObj){
+      var marker =  new google.maps.Marker({
+        position: new google.maps.LatLng(LatLngObj.lat, LatLngObj.lng),
+        map:this.map,
+        icon:'http://www.magic-emoji.com/emoji/images/619_emoji_iphone_ok_hand_sign.png'
       });
     }
   },
