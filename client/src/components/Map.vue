@@ -18,6 +18,12 @@ export default {
         console.log(currentLocation);
         this.map.panTo(new google.maps.LatLng(currentLocation.lat, currentLocation.lng));
         this.map.setZoom(20);
+        var marker =  new google.maps.Marker({
+          position: new google.maps.LatLng(currentLocation.lat, currentLocation.lng),
+          map:this.map
+        });
+
+        //Watch position, pour la mise à jour de la position du gars
       });
     }
   },
