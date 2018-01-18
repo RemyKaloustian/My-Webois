@@ -1,10 +1,26 @@
 <template>
-  <div class="google-map" :id="mapName"></div>
+  <div>
+    <div class="google-map" :id="mapName">
+    </div>
+  </div>
 </template>
 <script>
 export default {
   name: 'google-map',
   props: ['name'],
+  methods:{   
+    centerMapToCurrentLocation(){
+      navigator.geolocation.getCurrentPosition((position) => {
+        var currentLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        console.log(currentLocation);
+        this.map.panTo(new google.maps.LatLng(currentLocation.lat, currentLocation.lng));
+        this.map.setZoom(20);
+      });
+    }
+  },
   data: function () {
     return {
       mapName: this.name + "-map",
@@ -36,11 +52,15 @@ export default {
       const marker = new google.maps.Marker({ 
         position,
         map: this.map
+        
       });
     this.markers.push(marker)
       this.map.fitBounds(this.bounds.extend(position))
     });
+    this.centerMapToCurrentLocation();
+    
   }
+ 
 };
 </script>
 <style scoped>
@@ -50,4 +70,12 @@ export default {
   margin: 0 auto;
   background: gray;
 }
+
+/*button
+{
+  position: absolute;
+  z-index: 99;
+  right:2px;
+  top:2px;
+}*/
 </style>
