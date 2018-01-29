@@ -35,17 +35,14 @@ export default class MapPage extends React.Component {
 
   _mapRef = null;
 
-  getLocation = ()=> {
-    if (navigator.geolocation) 
-    {
+  getLocation = () => new Promise((resolve, reject) => {
+    if (navigator.geolocation)     {
       navigator.geolocation.getCurrentPosition((position) => {
-        
-        this.state.lat = position.coords.latitude;
-        this.state.lng = position.coords.longitude;
-        console.log("In get location = " + this.state.lat +' --  ' + this.state.lng);
-        this._mapRef.panTo({lat:this.state.lat, lng:this.state.lng});
-      
-        
+        const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
+        this.setState(latLng);
+        console.log("In get location = " + latLng.lat +' --  ' + latLng.lng);
+        //this._mapRef.panTo(latLng);
+        resolve(latLng);       
         
       });
     } 
@@ -53,7 +50,7 @@ export default class MapPage extends React.Component {
     { 
         console.log( "Geolocation is not supported by this browser.");
     }
-  }
+  });
 
   _handleMapMounted = (c) => {
     if (!c || this._mapRef) return;
@@ -71,8 +68,11 @@ export default class MapPage extends React.Component {
     // console.log(center, bounds);
   };
 
-  initializeMap(){
-    this.getLocation();
+  initializeMap = () =>{
+    console.log(this);
+    this.getLocation().then({
+
+    });
 
   }
 
