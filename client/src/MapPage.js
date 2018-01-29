@@ -86,7 +86,7 @@ export default class MapPage extends React.Component {
         defaultCenter={{lat: 25.0391667, lng: 121.525}}
         onMapMounted={this._handleMapMounted}
         onBoundsChanged={this._handleBoundsChanged}>
-        <Marker key="333" position={{lat: 43.620720, lng:7.070611}}></Marker>
+        
         <MarkerClusterer
           averageCenter
           enableRetinaIcons
