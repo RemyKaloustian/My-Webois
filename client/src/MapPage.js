@@ -59,7 +59,7 @@ export default class MapPage extends React.Component {
     if (!c || this._mapRef) return;
     this._mapRef = c;
     console.log('Ref set later @ ' + Date.now());
-    this.getLocation();
+    this.initializeMap();
     //console.log("In handleMapMounted = " +this.state.lat +' --  ' + this.state.lng);
     
   };
@@ -70,6 +70,11 @@ export default class MapPage extends React.Component {
     const bounds = this._mapRef.getBounds();
     // console.log(center, bounds);
   };
+
+  initializeMap(){
+    this.getLocation();
+
+  }
 
   render() {
 
