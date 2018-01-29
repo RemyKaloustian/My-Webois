@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import DemoApp from './DemoApp'
+import MapPage from './MapPage'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-       <DemoApp />
+        <h1>HH</h1>
+       <MapPage />
       </div>
     );
   }
