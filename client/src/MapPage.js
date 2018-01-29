@@ -2,6 +2,7 @@ import React from 'react';
 import $ from "jquery";
 import {GoogleMap, Marker, withGoogleMap, withScriptjs} from 'react-google-maps';
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
+//const google = window.google;
 
 const GoogleMapsWrapper = withScriptjs(withGoogleMap(props => {
   const {onMapMounted, ...otherProps} = props;
@@ -24,14 +25,37 @@ export default class MapPage extends React.Component {
       .then(data => {
         this.setState({markers: data.photos});
       });
+      //Make map operations in _handleMapMounted
   }
 
   _mapRef = null;
+
+  getLocation = ()=> {
+    if (navigator.geolocation) 
+    {
+      navigator.geolocation.getCurrentPosition((position) => {
+        
+        this.state.lat = position.coords.latitude;
+        this.state.lng = position.coords.longitude;
+        console.log("In get location = " + this.state.lat +' --  ' + this.state.lng);
+        this._mapRef.panTo({lat:this.state.lat, lng:this.state.lng});
+        
+        
+      });
+    } 
+    else
+    { 
+        console.log( "Geolocation is not supported by this browser.");
+    }
+  }
 
   _handleMapMounted = (c) => {
     if (!c || this._mapRef) return;
     this._mapRef = c;
     console.log('Ref set later @ ' + Date.now());
+    this.getLocation();
+    //console.log("In handleMapMounted = " +this.state.lat +' --  ' + this.state.lng);
+    
   };
 
   _handleBoundsChanged = () => {
@@ -52,7 +76,7 @@ export default class MapPage extends React.Component {
         loadingElement={<div style={{height: `100%`}}/>}
         containerElement={<div style={{height: `100%`}}/>}
         mapElement={<div style={{height: `${height}px`}}/>}
-        defaultZoom={3}
+        defaultZoom={18}
         defaultCenter={{lat: 25.0391667, lng: 121.525}}
         onMapMounted={this._handleMapMounted}
         onBoundsChanged={this._handleBoundsChanged}>
