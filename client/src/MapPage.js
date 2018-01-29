@@ -18,13 +18,18 @@ export default class MapPage extends React.Component {
   };
 
   componentDidMount() {
+
+    //This is where we get the acci
     console.log('Mounted @ ' + Date.now());
     const url = "https://gist.githubusercontent.com/farrrr/dfda7dd7fccfec5474d3/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json";
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        this.setState({markers: data.photos});
+        //this.setState({markers: data.photos});
       });
+
+      this.setState({markers: [{id:1, latitude:43.616650 , longitude: 7.075074}, {id:2, latitude:43.617551 , longitude: 7.068636}, {id:3, latitude:43.614786 , longitude: 7.067993}]});
+      
       //Make map operations in _handleMapMounted
   }
 
@@ -39,6 +44,7 @@ export default class MapPage extends React.Component {
         this.state.lng = position.coords.longitude;
         console.log("In get location = " + this.state.lat +' --  ' + this.state.lng);
         this._mapRef.panTo({lat:this.state.lat, lng:this.state.lng});
+      
         
         
       });
@@ -80,13 +86,14 @@ export default class MapPage extends React.Component {
         defaultCenter={{lat: 25.0391667, lng: 121.525}}
         onMapMounted={this._handleMapMounted}
         onBoundsChanged={this._handleBoundsChanged}>
+        <Marker key="333" position={{lat: 43.620720, lng:7.070611}}></Marker>
         <MarkerClusterer
           averageCenter
           enableRetinaIcons
           gridSize={60}>
           {this.state.markers.map(marker => (
             <Marker
-              key={marker.photo_id}
+              key={marker.id}
               position={{lat: marker.latitude, lng: marker.longitude}}
             />
           ))}
