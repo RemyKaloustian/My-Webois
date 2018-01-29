@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from "jquery";
 import {GoogleMap, Marker, withGoogleMap, withScriptjs} from 'react-google-maps';
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 
@@ -41,12 +42,16 @@ export default class MapPage extends React.Component {
   };
 
   render() {
+
+    let width = $(window).width();
+    let height = $(window).height();
+  
     return (
       <GoogleMapsWrapper
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{height: `100%`}}/>}
         containerElement={<div style={{height: `100%`}}/>}
-        mapElement={<div style={{height: `400px`}}/>}
+        mapElement={<div style={{height: `${height}px`}}/>}
         defaultZoom={3}
         defaultCenter={{lat: 25.0391667, lng: 121.525}}
         onMapMounted={this._handleMapMounted}
