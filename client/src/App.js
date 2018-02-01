@@ -5,6 +5,7 @@ import './App.css';
 import MapPage from './MapPage'
 import Menu from './Menu';
 import ManagerView from './ManagerView';
+import NewAccidentPopup from './NewAccidentPopup';
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
        <MapPage ref="mapComponent"/>
        <Menu onManagerViewClick = {() => this.showManagerView()} onMapViewClick = {() => this.showMapView()}/>
        <ManagerView ref="managerViewComponent"/>
+       <NewAccidentPopup/>
       </div>
     );
   }
