@@ -28,7 +28,7 @@ export default class MapPage extends React.Component {
         //this.setState({markers: data.photos});
       });
 
-      this.setState({markers: [{id:1, latitude:43.616650 , longitude: 7.075074}, {id:2, latitude:43.617551 , longitude: 7.068636}, {id:3, latitude:43.614786 , longitude: 7.067993}]});
+      this.setState( {center:{lat:8.983491, lng:38.745232}, markers: [{id:1, latitude:43.616650 , longitude: 7.075074}, {id:2, latitude:43.617551 , longitude: 7.068636}, {id:3, latitude:43.614786 , longitude: 7.067993}]});
       
       //Make map operations in _handleMapMounted
   }
@@ -41,7 +41,7 @@ export default class MapPage extends React.Component {
         const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
         this.setState(latLng);
         console.log("In get location = " + latLng.lat +' --  ' + latLng.lng);
-        //this._mapRef.panTo(latLng);
+        ///this._mapRef.panTo(latLng);
         resolve(latLng);       
         
       });
@@ -57,8 +57,7 @@ export default class MapPage extends React.Component {
     this._mapRef = c;
     console.log('Ref set later @ ' + Date.now());
     this.initializeMap();
-    //console.log("In handleMapMounted = " +this.state.lat +' --  ' + this.state.lng);
-    
+  
   };
 
   _handleBoundsChanged = () => {
@@ -70,8 +69,11 @@ export default class MapPage extends React.Component {
 
   initializeMap = () =>{
     console.log(this);
-    this.getLocation().then({
-
+    this.getLocation().then((value) =>{
+      console.log(value);
+      //Cannot read property 'setState' of undefined
+      this.setState({center: value});      
+      console.log(this.state.center);
     });
 
   }
@@ -88,7 +90,7 @@ export default class MapPage extends React.Component {
         containerElement={<div style={{height: `100%`}}/>}
         mapElement={<div style={{height: `${height}px`}}/>}
         defaultZoom={18}
-        defaultCenter={{lat: 25.0391667, lng: 121.525}}
+        center={this.state.center}
         onMapMounted={this._handleMapMounted}
         onBoundsChanged={this._handleBoundsChanged}>
         
