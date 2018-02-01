@@ -27,6 +27,10 @@ class App extends Component {
     this.refs.accidentPopupComponent.show();
   }
 
+  validateNewAccident = () =>{
+    this.refs.mapComponent.newAccident();
+  }
+
   render() {
     return (
       <div className="App">
@@ -37,7 +41,7 @@ class App extends Component {
           onNewAccidentClick = {() => this.showNewAccident()}
           />
        <ManagerView ref="managerViewComponent"/>
-       <NewAccidentPopup ref="accidentPopupComponent"/>
+       <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
       </div>
     );
   }

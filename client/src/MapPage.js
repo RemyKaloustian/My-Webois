@@ -89,6 +89,10 @@ export default class MapPage extends React.Component {
     $('#map').show();
   }
 
+  newAccident = () =>{
+    console.log(" New accident at "+ this.state.center);
+  }
+
   render() {
 
     let width = $(window).width();
