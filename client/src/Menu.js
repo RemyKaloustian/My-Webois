@@ -5,14 +5,13 @@ import 'bulma/css/bulma.css';
 class Menu extends Component {
     render() {
       return (
-          <div id="menu">    
+          <div id="bottom-menu">    
 
-                <div id="left-menu">
-                    <button>Manager view</button>
-                </div>
-                <div id="right-menu">
-                    <button>Declare accident</button>
-                </div>
+                
+                    <button id="left-menu">Manager view</button>
+                
+                    <button id="right-menu">Declare accident</button>
+                
             </div>
       
 
