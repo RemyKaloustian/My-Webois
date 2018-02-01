@@ -68,6 +68,16 @@ export default class MapPage extends React.Component {
       this.setState({center: value});      
     });
 
+                    
+    setInterval(() =>{
+       console.log("Updating position"); 
+       this.getLocation().then((value) =>{
+        this.setState({center: value});   
+        console.log(this.state.center);   
+      });
+      }, 1000);
+
+
   }
 
   hide = () =>{
