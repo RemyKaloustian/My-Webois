@@ -70,6 +70,10 @@ export default class MapPage extends React.Component {
 
   }
 
+  hide = () => {
+    console.log("Hiding ");
+  }
+
   render() {
 
     let width = $(window).width();

@@ -8,7 +8,7 @@ class Menu extends Component {
           <div id="bottom-menu">    
 
                 
-                    <button id="left-menu">Manager view</button>
+                    <button id="left-menu" onClick={() => this.props.onManagerViewClick()}>Manager view</button>
                 
                     <button id="right-menu">Declare accident</button>
                 

@@ -8,8 +8,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <MapPage />
-       <Menu />
+       <MapPage ref="mapComponent"/>
+       <Menu onManagerViewClick = {() => this.refs.mapComponent.hide()}/>
       </div>
     );
   }
