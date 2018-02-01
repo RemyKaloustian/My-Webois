@@ -19,13 +19,12 @@ export default class MapPage extends React.Component {
 
   componentDidMount() {
 
-    //This is where we get the acci
+    //This is where we get the accident datas
     console.log('Mounted @ ' + Date.now());
     const url = "https://gist.githubusercontent.com/farrrr/dfda7dd7fccfec5474d3/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json";
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        //this.setState({markers: data.photos});
       });
 
       this.setState( {center:{lat:8.983491, lng:38.745232}, markers: [{id:1, latitude:43.616650 , longitude: 7.075074}, {id:2, latitude:43.617551 , longitude: 7.068636}, {id:3, latitude:43.614786 , longitude: 7.067993}]});
@@ -35,13 +34,12 @@ export default class MapPage extends React.Component {
 
   _mapRef = null;
 
+  //Promise to get the current position
   getLocation = () => new Promise((resolve, reject) => {
     if (navigator.geolocation)     {
       navigator.geolocation.getCurrentPosition((position) => {
         const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
         this.setState(latLng);
-        console.log("In get location = " + latLng.lat +' --  ' + latLng.lng);
-        ///this._mapRef.panTo(latLng);
         resolve(latLng);       
         
       });
@@ -56,24 +54,18 @@ export default class MapPage extends React.Component {
     if (!c || this._mapRef) return;
     this._mapRef = c;
     console.log('Ref set later @ ' + Date.now());
-    this.initializeMap();
-  
+    this.initializeMap();  
   };
 
   _handleBoundsChanged = () => {
     if (!this._mapRef) return;
     const center = this._mapRef.getCenter();
     const bounds = this._mapRef.getBounds();
-    // console.log(center, bounds);
   };
 
   initializeMap = () =>{
-    console.log(this);
     this.getLocation().then((value) =>{
-      console.log(value);
-      //Cannot read property 'setState' of undefined
       this.setState({center: value});      
-      console.log(this.state.center);
     });
 
   }
