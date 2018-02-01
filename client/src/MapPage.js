@@ -70,9 +70,13 @@ export default class MapPage extends React.Component {
 
   }
 
-  hide = () => {
+  hide = () =>{
     console.log("Hiding ");
     $('#map').hide();
+  }
+
+  show = () =>{
+    $('#map').show();
   }
 
   render() {
