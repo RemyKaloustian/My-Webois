@@ -72,6 +72,7 @@ export default class MapPage extends React.Component {
 
   hide = () => {
     console.log("Hiding ");
+    $('#map').hide();
   }
 
   render() {
@@ -83,7 +84,7 @@ export default class MapPage extends React.Component {
       <GoogleMapsWrapper
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{height: `100%`}}/>}
-        containerElement={<div style={{height: `100%`}}/>}
+        containerElement={<div id="map" style={{height: `100%`}}/>}
         mapElement={<div style={{height: `${height}px`}}/>}
         defaultZoom={18}
         center={this.state.center}
