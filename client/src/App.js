@@ -6,12 +6,19 @@ import Menu from './Menu';
 import ManagerView from './ManagerView';
 
 class App extends Component {
+
+  showManagerView = () => 
+  {
+    this.refs.mapComponent.hide();
+    this.refs.managerViewComponent.show()
+  }
+
   render() {
     return (
       <div className="App">
        <MapPage ref="mapComponent"/>
-       <Menu onManagerViewClick = {() => this.refs.mapComponent.hide()}/>
-       <ManagerView/>
+       <Menu onManagerViewClick = {() => this.showManagerView()}/>
+       <ManagerView ref="managerViewComponent"/>
       </div>
     );
   }

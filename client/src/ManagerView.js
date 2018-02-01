@@ -9,6 +9,11 @@ class ManagerView extends Component
         $('#manager-view').hide();
     }
 
+    show = () =>
+    {
+        $('#manager-view').show();
+    }
+
     render() {        
         return (
           <div id="manager-view" >
