@@ -24,7 +24,7 @@ class Menu extends Component {
       return (
         <div id="bottom-menu">    
             <button id="left-menu" onClick={() => this.switchView()}>Manager view</button>
-            <button id="right-menu">Declare accident</button>
+            <button id="right-menu" onClick={() => this.props.onNewAccidentClick()}>Declare accident</button>
         </div>
         
       );

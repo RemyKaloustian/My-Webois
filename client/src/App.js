@@ -23,13 +23,21 @@ class App extends Component {
     
   }
 
+  showNewAccident = () =>{
+    this.refs.accidentPopupComponent.show();
+  }
+
   render() {
     return (
       <div className="App">
        <MapPage ref="mapComponent"/>
-       <Menu onManagerViewClick = {() => this.showManagerView()} onMapViewClick = {() => this.showMapView()}/>
+       <Menu 
+          onManagerViewClick = {() => this.showManagerView()} 
+          onMapViewClick = {() => this.showMapView()}
+          onNewAccidentClick = {() => this.showNewAccident()}
+          />
        <ManagerView ref="managerViewComponent"/>
-       <NewAccidentPopup/>
+       <NewAccidentPopup ref="accidentPopupComponent"/>
       </div>
     );
   }

@@ -34,3 +34,9 @@ body {
   width:100%;
 }
 
+#accident-popup
+{
+  position: absolute;
+  top:10%;
+}
+

@@ -9,6 +9,11 @@ class NewAccidentPopup extends Component
 
     }
 
+    show = () =>{
+        console.log("SHowing ");
+        $('#accident-popup').show();
+    }
+
     render(){
         return (<div id="accident-popup">New accident popup</div>);
     }
