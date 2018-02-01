@@ -19,6 +19,8 @@ class App extends Component {
   showMapView = () => {
     this.refs.mapComponent.show();
     this.refs.managerViewComponent.hide();
+    $('#left-menu').text("Manager view");
+    
   }
 
   render() {
