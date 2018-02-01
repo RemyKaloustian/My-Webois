@@ -3,3 +3,25 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+
+#menu
+{
+  position:absolute;
+  z-index: 20;
+  bottom:5px;
+  display: inline-block;
+ 
+}
+
+#left-menu
+{
+  display: inline-block;
+}
+
+#right-menu
+{
+  display: inline-block;
+}
+
+
