@@ -109,7 +109,7 @@ export default class MapPage extends React.Component
 
   newAccident = () =>
   {
-    console.log(" New accident at "+ this.state.center);
+    console.log(" New accident at "+ this.state.center.lat + " & "+ this.state.center.lng);
   }
 
 
