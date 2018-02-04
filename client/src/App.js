@@ -11,6 +11,10 @@ import DataBaseUpdater from './DataBaseUpdater';
 
 class App extends Component {
 
+  componentDidMount(){
+    this.showMapView();
+  }
+
   showManagerView = () =>  {
     this.refs.mapComponent.hide();
     this.refs.managerViewComponent.show();
@@ -20,6 +24,7 @@ class App extends Component {
 
   showMapView = () => {
     this.refs.mapComponent.show();
+    this.refs.mapComponent.fill(this.refs.dbselector.selectAccidentsPosition());
     this.refs.managerViewComponent.hide();
     $('#left-menu').text("Manager view");
     
