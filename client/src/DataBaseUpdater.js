@@ -5,6 +5,11 @@ import $ from "jquery";
 class DataBaseUpdater extends Component
 {
 
+    insertAccident = (coordsObj) =>
+    {
+        console.log("inserting in db w/ lat = "+ coordsObj.lat +" & lng = "+coordsObj.lng);
+    }
+
     //Nothing in render cuz we just want the methods of the database
     render(){return(<p></p>);}
 }
