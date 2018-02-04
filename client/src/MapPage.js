@@ -110,7 +110,7 @@ export default class MapPage extends React.Component
   newAccident = () =>
   {
     //WARNING need an id + latitude + longitude to make a marker object
-    let id = Math.floor(Math)
+    let id = Math.floor(Math.random() * (20000 - 0) + 0);
     let updatedMarkers = this.state.markers;
     updatedMarkers.push({id:id, latitude:this.state.center.lat, longitude:this.state.center.lng});
     console.log(updatedMarkers);
