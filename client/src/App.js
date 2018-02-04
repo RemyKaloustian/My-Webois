@@ -36,6 +36,7 @@ class App extends Component {
 
   validateNewAccident = () =>{
     this.refs.mapComponent.newAccident();
+    this.refs.dbupdater.insertAccident(this.refs.mapComponent.state.center);
   }
 
   render() {
