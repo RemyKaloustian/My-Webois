@@ -6,7 +6,8 @@ import MapPage from './MapPage'
 import Menu from './Menu';
 import ManagerView from './ManagerView';
 import NewAccidentPopup from './NewAccidentPopup';
-
+import DataBaseSelector from './DataBaseSelector';
+import DataBaseUpdater from './DataBaseUpdater';
 
 class App extends Component {
 
@@ -34,14 +35,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <MapPage ref="mapComponent"/>
-       <Menu 
+        <DataBaseSelector ref="dbselector"/>
+        <DataBaseUpdater ref="dbupdater"/>
+        <MapPage ref="mapComponent"/>
+        <Menu 
           onManagerViewClick = {() => this.showManagerView()} 
           onMapViewClick = {() => this.showMapView()}
           onNewAccidentClick = {() => this.showNewAccident()}
           />
-       <ManagerView ref="managerViewComponent"/>
-       <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
+        <ManagerView ref="managerViewComponent"/>
+        <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
       </div>
     );
   }
