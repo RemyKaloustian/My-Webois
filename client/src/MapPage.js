@@ -4,20 +4,28 @@ import {GoogleMap, Marker, withGoogleMap, withScriptjs} from 'react-google-maps'
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 //const google = window.google;
 
-const GoogleMapsWrapper = withScriptjs(withGoogleMap(props => {
-  const {onMapMounted, ...otherProps} = props;
-  return <GoogleMap {...otherProps} ref={c => {
+const GoogleMapsWrapper = withScriptjs(withGoogleMap(props => 
+  {
+    const {onMapMounted, ...otherProps} = props;
+    return <GoogleMap {...otherProps} ref={c => 
+  {
     onMapMounted && onMapMounted(c)
   }}>{props.children}</GoogleMap>
 }));
 
-export default class MapPage extends React.Component {
+export default class MapPage extends React.Component 
+{
 
-  state = {
+  state = 
+  {
     markers: [],
   };
 
-  componentDidMount() {
+  _mapRef = null;
+
+
+  componentDidMount() 
+  {
 
     //This is where we get the accident datas
     console.log('Mounted @ ' + Date.now());
@@ -27,17 +35,19 @@ export default class MapPage extends React.Component {
       .then(data => {
       });
 
-      this.setState( {center:{lat:8.983491, lng:38.745232}, markers: [{id:1, latitude:43.616650 , longitude: 7.075074}, {id:2, latitude:43.617551 , longitude: 7.068636}, {id:3, latitude:43.614786 , longitude: 7.067993}]});
+      this.setState( {center:{lat:8.983491, lng:38.745232}, markers: []});
       
       //Make map operations in _handleMapMounted
   }
 
-  _mapRef = null;
 
   //Promise to get the current position
-  getLocation = () => new Promise((resolve, reject) => {
-    if (navigator.geolocation)     {
-      navigator.geolocation.getCurrentPosition((position) => {
+  getLocation = () => new Promise((resolve, reject) => 
+  {
+    if (navigator.geolocation)    
+     {
+      navigator.geolocation.getCurrentPosition((position) => 
+      {
         const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
         this.setState(latLng);
         resolve(latLng);       
@@ -50,28 +60,34 @@ export default class MapPage extends React.Component {
     }
   });
 
-  _handleMapMounted = (c) => {
+  _handleMapMounted = (c) => 
+  {
     if (!c || this._mapRef) return;
     this._mapRef = c;
     console.log('Ref set later @ ' + Date.now());
     this.initializeMap();  
   };
 
-  _handleBoundsChanged = () => {
+  _handleBoundsChanged = () => 
+  {
     if (!this._mapRef) return;
     const center = this._mapRef.getCenter();
     const bounds = this._mapRef.getBounds();
   };
 
-  initializeMap = () =>{
-    this.getLocation().then((value) =>{
+  initializeMap = () =>
+  {
+    this.getLocation().then((value) =>
+    {
       this.setState({center: value});      
     });
 
                     
-    setInterval(() =>{
+    setInterval(() =>
+    {
        //console.log("Updating position"); 
-       this.getLocation().then((value) =>{
+       this.getLocation().then((value) =>
+       {
         this.setState({center: value});   
        // console.log(this.state.center);   
       });
@@ -80,21 +96,36 @@ export default class MapPage extends React.Component {
 
   }
 
-  hide = () =>{
+  hide = () =>
+  {
     console.log("Hiding ");
     $('#map').hide();
   }
 
-  show = () =>{
+  show = () =>
+  {
     $('#map').show();
   }
 
-  newAccident = () =>{
+  newAccident = () =>
+  {
     console.log(" New accident at "+ this.state.center);
   }
 
-  render() {
 
+  fill = (results) =>
+  {
+    let updatedMarkers = [];
+    for (let index = 0; index < results.length; index++) 
+    {
+      updatedMarkers.push(results[index]);     
+    }
+    this.setState({markers:updatedMarkers});
+    console.log(results);
+  }
+
+  render() 
+  {
     let width = $(window).width();
     let height = $(window).height();
   
