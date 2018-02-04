@@ -109,6 +109,16 @@ export default class MapPage extends React.Component
 
   newAccident = () =>
   {
+    //WARNING need an id + latitude + longitude to make a marker object
+    let id = Math.floor(Math)
+    let updatedMarkers = this.state.markers;
+    updatedMarkers.push({id:id, latitude:this.state.center.lat, longitude:this.state.center.lng});
+    console.log(updatedMarkers);
+    console.log(this.state.center);
+    console.log(this.state.markers);
+    //error here
+    console.log(this.state);
+    this.setState({markers:updatedMarkers});
     console.log(" New accident at "+ this.state.center.lat + " & "+ this.state.center.lng);
   }
 
@@ -121,9 +131,11 @@ export default class MapPage extends React.Component
       updatedMarkers.push(results[index]);     
     }
     this.setState({markers:updatedMarkers});
+
     console.log(results);
   }
 
+ 
   render() 
   {
     let width = $(window).width();
