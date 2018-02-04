@@ -14,6 +14,7 @@ class App extends Component {
   showManagerView = () =>  {
     this.refs.mapComponent.hide();
     this.refs.managerViewComponent.show();
+    this.refs.managerViewComponent.fill(this.refs.dbselector.selectAccidents());
     $('#left-menu').text("Map view");
   }
 
