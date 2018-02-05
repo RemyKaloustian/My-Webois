@@ -36,7 +36,7 @@ class ManagerView extends Component
     render() {        
         return (
           <div id="manager-view" >
-                The manager view
+                <h3>The manager view</h3>
                 <div>
                 {
                     this.state.accidents.map(function(item, i)
