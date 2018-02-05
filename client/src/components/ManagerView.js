@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import $ from "jquery";
 
+import AccidentItem from './AccidentItem';
+
 class ManagerView extends Component
 {
     state = {accidents:[]};
@@ -39,7 +41,7 @@ class ManagerView extends Component
                 {
                     this.state.accidents.map(function(item, i)
                     {
-                        return (<p key={i}>{item}</p>);
+                        return (<AccidentItem key={i} address={item}/>);
                     })
                 }
             </div>
