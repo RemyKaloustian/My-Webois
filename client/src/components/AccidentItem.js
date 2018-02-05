@@ -8,8 +8,8 @@ class AccidentItem extends Component
     {
         return (
             <div className='accident-item'>
-                <p class='accident-item-address'>{this.props.address}</p>
-                <button class='remove-accident-btn'>Remove</button>
+                <p className='accident-item-address'>{this.props.address}</p>
+                <button className='remove-accident-btn'>Remove</button>
             </div>
         )
     }
