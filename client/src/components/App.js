@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import logo from './logo.svg';
-import './App.css';
 import MapPage from './MapPage'
 import Menu from './Menu';
 import ManagerView from './ManagerView';
 import NewAccidentPopup from './NewAccidentPopup';
-import DataBaseSelector from './DataBaseSelector';
-import DataBaseUpdater from './DataBaseUpdater';
+import DataBaseSelector from '../database/DataBaseSelector';
+import DataBaseUpdater from '../database/DataBaseUpdater';
 
 class App extends Component {
 
