@@ -5,23 +5,23 @@ import 'bulma/css/bulma.css';
 class NewAccidentPopup extends Component
 {
     componentDidMount(){
-        $('#accident-popup').hide();
+        $('#popup-container').hide();
         $('#valid-accident').hide();
         
         //Centering the popup in here cuz it breaks my balls to do it in css
-        $('#accident-popup').css('margin-left', $(window).width()/2 - $('#accident-popup').width()/2);
-        $('#valid-accident').css('margin-left', $(window).width()/2 - $('#valid-accident').width()/2);
+        //$('#accident-popup').css('margin-left', $(window).width()/2 - $('#accident-popup').width()/2);
+        //$('#valid-accident').css('margin-left', $(window).width()/2 - $('#valid-accident').width()/2);
         
     }
 
     show = () =>{
         console.log("SHowing ");
-        $('#accident-popup').show();
+        $('#popup-container').show();
     }
 
     validateAccident = ()=>{
         this.props.onNewAccident();
-        $('#accident-popup').hide();
+        this.closePopup();
         $('#valid-accident').show();
 
         setTimeout(()=>{
@@ -31,14 +31,14 @@ class NewAccidentPopup extends Component
     }
 
     closePopup = () =>{
-        $('#accident-popup').hide();
+        $('#popup-container').hide();
     }
 
     render(){
         return (
-            <div>
+            <div id="popup-container">
                 <div id="accident-popup">
-                <button onClick={()=>this.closePopup()}>Close</button>
+                <img src="assets/close.png" id='close-popup'  onClick={()=>this.closePopup()}/>
                     <h4>New accident</h4> 
                     <p>Do you really want to signal an accident at your position ?</p>
                     <button onClick={() => this.validateAccident()}>Validate</button>  
