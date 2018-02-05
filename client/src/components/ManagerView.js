@@ -10,6 +10,7 @@ class ManagerView extends Component
     componentDidMount() 
     {
         $('#manager-view').hide();
+        $('#manager-view').css('max-height', $(window).height() - $('#bottom-menu').height());
     }
 
     show = () =>

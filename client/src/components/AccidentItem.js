@@ -7,7 +7,7 @@ class AccidentItem extends Component
     render()
     {
         return (
-            <div>
+            <div className='accident-item'>
                 <p class='accident-item-address'>{this.props.address}</p>
                 <button class='remove-accident-btn'>Remove</button>
             </div>

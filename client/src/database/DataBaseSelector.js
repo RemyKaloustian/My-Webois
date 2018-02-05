@@ -9,7 +9,7 @@ class DataBaseSelector extends Component
     selectAccidents = ()=>
     {
         //Normally use db calls
-        return ['En France, c\'est plus de 6 virgule 5 millions', 'de tonnes de nourrrrriture ', 'qui sont jetées chaque' ,'année, par les particluiers (connards de particluiers)'];
+        return ['En France, c\'est plus de 6 virgule 5 millions', 'de tonnes de nourrrrriture ', 'qui sont jetées chaque' ,'année, par les particluiers (connards de particluiers)','tt','tt','tt','tt','tt','tt','tt','tt','tt','tt','tt','tt','tt',];
     }
 
     //This one is used for the map view
