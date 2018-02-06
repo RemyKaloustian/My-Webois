@@ -7,11 +7,6 @@ class NewAccidentPopup extends Component
     componentDidMount(){
         $('#popup-container').hide();
         $('#valid-accident').hide();
-        
-        //Centering the popup in here cuz it breaks my balls to do it in css
-        //$('#accident-popup').css('margin-left', $(window).width()/2 - $('#accident-popup').width()/2);
-        //$('#valid-accident').css('margin-left', $(window).width()/2 - $('#valid-accident').width()/2);
-        
     }
 
     show = () =>{
