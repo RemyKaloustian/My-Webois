@@ -107,12 +107,6 @@ body
 }
 
 
-.animated-show-managerview
-{
-  transition-duration: 0.4s;
-  margin-left: 0px;
-}
-
 .remove-accident-btn
 {
   text-align: center;
@@ -144,7 +138,7 @@ body
 #accident-popup
 {
   position: absolute;
-  top:50%;
+  /*top:50%;*/
   background-color: #f5f5f5;
   width:90%;
   margin-left: 50%;

@@ -16,7 +16,10 @@ class NewAccidentPopup extends Component
 
     show = () =>{
         console.log("SHowing ");
-        $('#popup-container').show();
+       $('#popup-container').show();
+       $("#accident-popup").animate({
+            top: '50%'
+        }, 500);
     }
 
     validateAccident = ()=>{
@@ -31,7 +34,12 @@ class NewAccidentPopup extends Component
     }
 
     closePopup = () =>{
-        $('#popup-container').hide();
+        $("#accident-popup").animate({
+            top: '0%'
+        }, 300);
+        setTimeout(function(){
+        $('#popup-container').hide();            
+        }, 300)
     }
 
     render(){
