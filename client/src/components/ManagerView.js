@@ -3,13 +3,15 @@ import $ from "jquery";
 
 import AccidentItem from './AccidentItem';
 
+//The manager view shows the accidents in a list
 class ManagerView extends Component
 {
-    state = {accidents:[]};
+    state = {accidents:[]};//the accidents list
 
-    componentDidMount() 
+    componentDidMount() //The manager view is never hidden, only its margin-left changes
     {
         //$('#manager-view').hide();
+        //Setting the max height in order to scroll when overflow
         $('#manager-view').css('max-height', $(window).height() - $('#bottom-menu').height());
     }
 
@@ -18,6 +20,8 @@ class ManagerView extends Component
         //$('#manager-view').show();
         //$('#manager-view').addClass('animated-show-managerview');
        // $('#manager-view').css('margin-left', '0px');
+
+       //Making dat phat slide to show the manager view
         $("#manager-view").animate({
             marginLeft: '0px'
         }, 500);
@@ -28,12 +32,15 @@ class ManagerView extends Component
     {
         //$('#manager-view').hide();
         //$('#manager-view').css('margin-left', '100%');
+
+        //Making dat phat slide to hide the manager view
         $("#manager-view").animate({
             marginLeft: '100%'
         }, 500);
         
     }
 
+    //Filling the view with results from db
     fill = (results)=>
     {
         let resaccidents = [];
@@ -41,11 +48,12 @@ class ManagerView extends Component
         {
             resaccidents.push(results[index]);            
         }
-        this.setState({accidents:resaccidents});
+        this.setState({accidents:resaccidents});//setting the accidents
         console.log(this.state.accidents);
     }
 
-    render() {        
+    render() {   
+        //This is basically like "for each accident, create an AccidentItem"     
         return (
           <div id="manager-view" >
                 <h3>The manager view</h3>
