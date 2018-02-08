@@ -61,7 +61,7 @@ class ManagerView extends Component
                 {
                     this.state.accidents.map(function(item, i)
                     {
-                        return (<AccidentItem key={i} address={item}/>);
+                        return (<AccidentItem key={i} address={item} id={"item-"+i} />);
                     })
                 }
             </div>

@@ -9,7 +9,13 @@ class AccidentItem extends Component
     remove = ()=>
     {
         //No longer displaying
-        this.setState({isActive:false});
+        //console.log("Removing "+ this.props.id)
+        $("#"+this.props.id).animate({
+            marginLeft: '100%'
+        }, 500,  () =>{
+            $("#"+this.props.id).remove();
+        });
+        //this.setState({isActive:false});
     }
 
     render()
@@ -18,7 +24,7 @@ class AccidentItem extends Component
         if(this.state.isActive)//checking if we display the component
         {
             return (           
-                <div className='accident-item'>
+                <div className='accident-item' id={this.props.id}>
                     <p className='accident-item-address'>{this.props.address}</p>
                     <button className='remove-accident-btn' onClick={()=>this.remove()}>Remove</button>
                 </div>      
