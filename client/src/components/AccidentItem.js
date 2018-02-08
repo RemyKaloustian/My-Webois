@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import $ from "jquery";
 
-import removeAccident from '../database/DBUpdater';
+import {removeAccident} from '../database/DBUpdater';
 
 //An accident item is used in the manager view, to list the accidents
 class AccidentItem extends Component
