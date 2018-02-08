@@ -5,6 +5,7 @@ import $ from "jquery";
 class DataBaseUpdater extends Component
 {
 
+    //Is used when we add a new accident
     insertAccident = (coordsObj) =>
     {
         console.log("inserting in db w/ lat = "+ coordsObj.lat +" & lng = "+coordsObj.lng);
