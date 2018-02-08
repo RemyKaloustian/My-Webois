@@ -7,6 +7,7 @@ import NewAccidentPopup from './NewAccidentPopup'; //The popup for declaring a n
 import DataBaseSelector from '../database/DataBaseSelector'; //The component for getting data
 import DataBaseUpdater from '../database/DataBaseUpdater';// The component for updating data
 
+//The main component
 class App extends Component {
 
   componentDidMount(){

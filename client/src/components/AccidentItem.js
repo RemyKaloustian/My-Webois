@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
 import $ from "jquery";
 
+//An accident item is used in the manager view, to list the accidents
 class AccidentItem extends Component
 {
-    state = {isActive:true};
+    state = {isActive:true}; //is used for display/hide
 
     remove = ()=>
     {
+        //No longer displaying
         this.setState({isActive:false});
     }
 
     render()
     {
 
-        if(this.state.isActive)
+        if(this.state.isActive)//checking if we display the component
         {
             return (           
                 <div className='accident-item'>
@@ -22,7 +24,7 @@ class AccidentItem extends Component
                 </div>      
             );
         }
-        else
+        else //if not displaying
         {
             return ('');
         }
