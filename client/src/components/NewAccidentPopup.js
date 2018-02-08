@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import 'bulma/css/bulma.css';
 
+//the new accident popup
 class NewAccidentPopup extends Component
 {
     componentDidMount(){
+        //hiding it from the beginning
         $('#popup-container').hide();
         $('#valid-accident').hide();
     }
@@ -12,6 +14,7 @@ class NewAccidentPopup extends Component
     show = () =>{
         console.log("SHowing ");
        $('#popup-container').show();
+       //PHAT animation
        $("#accident-popup").animate({
             top: '50%'
         }, 500);
@@ -20,20 +23,22 @@ class NewAccidentPopup extends Component
     validateAccident = ()=>{
         this.props.onNewAccident();
         this.closePopup();
-        $('#valid-accident').show();
+        //Need to work on dat
+        $('#valid-accident').show(); //showing confirmation
 
         setTimeout(()=>{
-        $('#valid-accident').hide();
-            
+            $('#valid-accident').hide();            
         }, 2000);
     }
 
     closePopup = () =>{
+        //PHAT animation
         $("#accident-popup").animate({
             top: '0%'
         }, 300);
+
         setTimeout(function(){
-        $('#popup-container').hide();            
+            $('#popup-container').hide();            
         }, 300)
     }
 
@@ -45,8 +50,6 @@ class NewAccidentPopup extends Component
                     <h4>New accident</h4> 
                     <p>Do you really want to signal an accident at your position ?</p>
                     <button onClick={() => this.validateAccident()}>Validate</button>  
-
-                                
                 </div>
                 <div id="valid-accident">
                     New accident on your position

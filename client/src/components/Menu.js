@@ -5,9 +5,10 @@ import 'bulma/css/bulma.css';
 const MAPVIEW = "mapview";
 const MANAGERVIEW = "managerview";
 
+//the bottom menu
 class Menu extends Component {
 
-    state = { currentView: MAPVIEW};
+    state = { currentView: MAPVIEW}; //is used to check what view we display when pressing the button
 
     switchView = () =>{
         if(this.state.currentView === MAPVIEW){

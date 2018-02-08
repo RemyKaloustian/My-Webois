@@ -4,6 +4,10 @@ import {GoogleMap, Marker, withGoogleMap, withScriptjs} from 'react-google-maps'
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 //const google = window.google;
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//      DON'T TOUCH THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 const GoogleMapsWrapper = withScriptjs(withGoogleMap(props => 
   {
     const {onMapMounted, ...otherProps} = props;
@@ -13,15 +17,16 @@ const GoogleMapsWrapper = withScriptjs(withGoogleMap(props =>
   }}>{props.children}</GoogleMap>
 }));
 
+//The map component, displaying the map and the markers
 export default class MapPage extends React.Component 
 {
 
   state = 
   {
-    markers: [],
+    markers: [],//the markers for accidents
   };
 
-  _mapRef = null;
+  _mapRef = null; //ma reference we will pass to child components
 
 
   componentDidMount() 
@@ -50,7 +55,7 @@ export default class MapPage extends React.Component
       {
         const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
         this.setState(latLng);
-        resolve(latLng);       
+        resolve(latLng);    //returning the latLng object    
         
       });
     } 
@@ -60,6 +65,7 @@ export default class MapPage extends React.Component
     }
   });
 
+  //Don't touch this
   _handleMapMounted = (c) => 
   {
     if (!c || this._mapRef) return;
@@ -68,6 +74,7 @@ export default class MapPage extends React.Component
     this.initializeMap();  
   };
 
+  //Don't touch this
   _handleBoundsChanged = () => 
   {
     if (!this._mapRef) return;
@@ -79,10 +86,10 @@ export default class MapPage extends React.Component
   {
     this.getLocation().then((value) =>
     {
-      this.setState({center: value});      
+      this.setState({center: value});//setting the center once we get the curent position
     });
 
-                    
+    //Getting the current position every second                
     setInterval(() =>
     {
        //console.log("Updating position"); 
@@ -92,8 +99,6 @@ export default class MapPage extends React.Component
        // console.log(this.state.center);   
       });
       }, 1000);
-
-
   }
 
   hide = () =>
@@ -116,13 +121,13 @@ export default class MapPage extends React.Component
     console.log(updatedMarkers);
     console.log(this.state.center);
     console.log(this.state.markers);
-    //error here
+    
     console.log(this.state);
     this.setState({markers:updatedMarkers});
     console.log(" New accident at "+ this.state.center.lat + " & "+ this.state.center.lng);
   }
 
-
+//get the results from the db and filling the markers
   fill = (results) =>
   {
     let updatedMarkers = [];
@@ -140,7 +145,8 @@ export default class MapPage extends React.Component
   {
     let width = $(window).width();
     let height = $(window).height();
-  
+    
+  //Some serious shit is going down dere
     return (
       <GoogleMapsWrapper
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
