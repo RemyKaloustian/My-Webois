@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import $ from "jquery";
 
+import removeAccident from '../database/DBUpdater';
+
 //An accident item is used in the manager view, to list the accidents
 class AccidentItem extends Component
 {
@@ -14,6 +16,7 @@ class AccidentItem extends Component
             marginLeft: '100%'
         }, 500,  () =>{
             $("#"+this.props.id).remove();
+            removeAccident(this.props.id.split('-')[1]);
         });
         //this.setState({isActive:false});
     }

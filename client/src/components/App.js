@@ -54,7 +54,7 @@ class App extends Component {
           onMapViewClick = {() => this.showMapView()}
           onNewAccidentClick = {() => this.showNewAccident()}
           />
-        <ManagerView ref="managerViewComponent"/>
+        <ManagerView ref="managerViewComponent" />
         <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
       </div>
     );
