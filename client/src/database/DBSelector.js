@@ -1,4 +1,4 @@
-
+//File for selection operations in DB
 
 export function selectAccidents ()
 {
