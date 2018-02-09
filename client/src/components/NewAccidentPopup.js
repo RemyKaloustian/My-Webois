@@ -22,31 +22,52 @@ class NewAccidentPopup extends Component
 
     validateAccident = ()=>{
         this.props.onNewAccident();
-        this.closePopup();
+        let self = this;
         //Need to work on dat
+        this.closeAccidentPopup();
         $('#valid-accident').show(); //showing confirmation
-
-        setTimeout(()=>{
-            $('#valid-accident').hide();            
-        }, 2000);
+        $('#valid-accident').animate({
+            top: '40%'
+        }, 400, function(){
+            setTimeout(function(){
+                self.closePopupContainer();
+            }, 1500);
+        });
     }
 
-    closePopup = () =>{
+    closePopup = (time) =>{
         //PHAT animation
-        $("#accident-popup").animate({
-            top: '0%'
-        }, 300);
+        this.closeAccidentPopup();
+        let self = this;
 
         setTimeout(function(){
-            $('#popup-container').hide();            
-        }, 300)
+            self.closePopupContainer();
+        }, time)
+    }
+
+    closeAccidentPopup = () =>
+    {
+        $("#accident-popup").animate({
+            top: '-20%'
+        }, 400);
+    }
+
+    closeValidationPopup =() =>
+    {
+        $('#valid-accident').hide();
+        $('#valid-accident').css('bottom', '10%');
+    }
+
+    closePopupContainer = () =>
+    {
+        $('#popup-container').hide();         
     }
 
     render(){
         return (
             <div id="popup-container">
                 <div id="accident-popup">
-                <img src="assets/close.png" id='close-popup'  onClick={()=>this.closePopup()}/>
+                <img src="assets/close.png" id='close-popup'  onClick={()=>this.closePopup(300)}/>
                     <h4>New accident</h4> 
                     <p>Do you really want to signal an accident at your position ?</p>
                     <button onClick={() => this.validateAccident()}>Validate</button>  

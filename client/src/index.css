@@ -186,10 +186,18 @@ body
   transform: scale(0.2) translate(200%, -260%);
   border-radius: 50%;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);}
+
 #valid-accident
 {
   position: absolute;
-  top:10%;
+  bottom:10%;
   background-color: #f5f5f5;
+  left:50%;
+  transform:translateX(-50%);
+  min-width:60%;
+  height:100px;
+  color:#0050ef;
+  font-family: GothamLight;
+  font-size: 1.4rem;
 }
 
