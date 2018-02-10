@@ -37,7 +37,7 @@ class NearbyAccidentNotifier extends Component
                     let not = this.state.notified;
                     not.push(accidentsList[index].id);
                     this.setState({notified : not});
-                    this.showNearbyAccidentPopup();
+                    this.notifyNearByAccident();
                 }               
             }            
         }
@@ -80,7 +80,6 @@ class NearbyAccidentNotifier extends Component
     {
         return (
             <div id="nearby-accident-notifier">
-                <button onClick={() => this.notifyNearByAccident()}>Test sound</button>
                 <audio id="notifier-sound">
                     <source src="assets/sound/warning.mp3" type="audio/mpeg"/>
                 </audio>
