@@ -1,7 +1,8 @@
 import React from 'react';
 import $ from "jquery";
-import {GoogleMap, Marker, withGoogleMap, withScriptjs} from 'react-google-maps';
+import {GoogleMap, Marker, withGoogleMap, withScriptjs, InfoBox} from 'react-google-maps';
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
+
 //const google = window.google;
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -24,6 +25,7 @@ export default class MapPage extends React.Component
   state = 
   {
     markers: [],//the markers for accidents
+    toto:'hihi'
   };
 
   _mapRef = null; //ma reference we will pass to child components
@@ -144,6 +146,15 @@ export default class MapPage extends React.Component
     console.log(results);
   }
 
+  clickMarker = (position, address, type, date)=>
+  {
+    console.log("Clicked marker ");
+    console.log(position);
+    console.log(address);
+    console.log(type);
+    console.log(date);
+  }
+
  
   render() 
   {
@@ -161,7 +172,6 @@ export default class MapPage extends React.Component
         center={this.state.center}
         onMapMounted={this._handleMapMounted}
         onBoundsChanged={this._handleBoundsChanged}>
-        
         <MarkerClusterer
           averageCenter
           enableRetinaIcons
@@ -170,7 +180,21 @@ export default class MapPage extends React.Component
             <Marker
               key={marker.id}
               position={{lat: marker.latitude, lng: marker.longitude}}
-            />
+              onClick={() =>this.clickMarker({lat: marker.latitude, lng: marker.longitude}, marker.address, marker.type, marker.date)}
+            >
+            
+            {this.props.isOpen && <InfoBox
+              onCloseClick={this.props.onToggleOpen}
+              options={{ closeBoxURL: ``, enableEventPropagation: true }}
+            >
+              <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
+                <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
+                  Hello, Kaohsiung!
+                </div>
+              </div>
+            </InfoBox>}
+            
+            </Marker>
           ))}
         </MarkerClusterer>
       </GoogleMapsWrapper>

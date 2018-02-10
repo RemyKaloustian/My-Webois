@@ -7,6 +7,7 @@ import NewAccidentPopup from './NewAccidentPopup'; //The popup for declaring a n
 import NearbyAccidentNotifier from './NearbyAccidentNotifier';
 import {selectAccidents} from '../database/DBSelector'; //The methods for getting data
 import {insertAccident} from '../database/DBUpdater';// The methods for updating data
+import AccidentDetails from './AccidentDetails';
 
 //The main component
 class App extends Component {
@@ -48,7 +49,9 @@ class App extends Component {
     return (
       <div className="App">
        
-        <MapPage ref="mapComponent" notifier={() => this.refs.nearbyAccidentNotifier.checkNearbyAccidents(this.refs.mapComponent.state.center, this.refs.mapComponent.state.markers)}/>
+        <MapPage ref="mapComponent" notifier={() => this.refs.nearbyAccidentNotifier.checkNearbyAccidents(this.refs.mapComponent.state.center, this.refs.mapComponent.state.markers)}
+         
+        />
         <Menu 
           onManagerViewClick = {() => this.showManagerView()} 
           onMapViewClick = {() => this.showMapView()}
@@ -57,7 +60,7 @@ class App extends Component {
         <ManagerView ref="managerViewComponent" />
         <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
         <NearbyAccidentNotifier ref="nearbyAccidentNotifier"/>
-      
+        <AccidentDetails ref="accidentDetails"/>
       </div>
     );
   }

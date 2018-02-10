@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 
+
 class NearbyAccidentNotifier extends Component
 {
     state = { notified:[] };
@@ -52,10 +53,11 @@ class NearbyAccidentNotifier extends Component
             top: '0'
         }, 500);
 
+        let popuptime = 10//normal case, 3800
         let self = this;
         setTimeout(function(){
             self.hideNearbyAccidentPopup();
-        }, 3800);
+        }, popuptime);
         
     }
 
