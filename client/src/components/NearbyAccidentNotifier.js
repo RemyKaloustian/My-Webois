@@ -25,7 +25,21 @@ class NearbyAccidentNotifier extends Component
         $('#nearby-accident-popup').animate({
             top: '0'
         }, 500);
+
+        let self = this;
+        setTimeout(function(){
+            self.hideNearbyAccidentPopup();
+        }, 3400)
         
+    }
+
+    hideNearbyAccidentPopup = () =>
+    {
+        $('#nearby-accident-popup').animate({
+            top: '-'+$(window).height()
+        }, 200, function(){
+            $('#nearby-accident-popup').hide();
+        });
     }
 
     notifyNearByAccident = () =>
