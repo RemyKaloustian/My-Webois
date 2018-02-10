@@ -309,4 +309,20 @@ body
   background-color: #f44336;
 }
 
+#input-container
+{
+  margin-top: 10%;
+}
+
+#input-container textarea
+{
+  display: table;
+  margin-left:auto;
+  margin-right: auto;
+  width:80%;
+  font-size: 1.2rem;
+  border:none;
+  overflow: hidden;
+}
+
 

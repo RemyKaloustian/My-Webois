@@ -60,7 +60,10 @@ class AccidentDetails extends Component
     insertComment = () =>
     {
         console.log("Inserting comment " + $('#input').val() + " on "+ this.currentCommentId );
-        $('#accident-comments').append('<p> 👉' +$('#input').val() + '</p>');
+        //$('#accident-comments').append('<p> 👉' +$('#input').val() + '</p>');
+        let com = this.state.comments;
+        com.push({comment:$('#input').val()});
+        this.setState(com);
         $('#input').val('');
         $('#accident-comments').scrollTop($('#accident-comments')[0].scrollHeight);
         this.hideInput();
@@ -89,7 +92,7 @@ class AccidentDetails extends Component
                                         
                     </div>
                     <div id="input-container">
-                        <textarea id="input">
+                        <textarea id="input" rows="15" cols="50" >
                         </textarea>
                         <br/>
                         <button id="validate-comment" onClick={() => this.insertComment()}>Ok</button> 
