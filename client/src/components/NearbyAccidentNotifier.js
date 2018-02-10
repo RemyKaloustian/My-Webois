@@ -29,7 +29,7 @@ class NearbyAccidentNotifier extends Component
         let self = this;
         setTimeout(function(){
             self.hideNearbyAccidentPopup();
-        }, 3400)
+        }, 3800);
         
     }
 
@@ -59,8 +59,12 @@ class NearbyAccidentNotifier extends Component
                     <source src="assets/sound/warning.mp3" type="audio/mpeg"/>
                 </audio>
                 <div id="nearby-accident-popup">
-                    <h3>Warning, accident nearby</h3>
-                    <p>[adresse de l'accident]</p>
+                    <div id="nearby-accident-content">
+                        <h3>Accident nearby !</h3>
+                        <br/>
+                        <br/>
+                        <p>[adresse de l'accident]</p>
+                    </div>
                 </div>
             </div>
         );
