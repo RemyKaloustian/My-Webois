@@ -11,6 +11,8 @@ class AccidentDetails extends Component
         comments:[]
     }
 
+    currentCommentId = '0';
+
     componentDidMount()
     {
         $('#input-container').hide();
@@ -25,17 +27,21 @@ class AccidentDetails extends Component
         )
     }
 
-    show = (type, address, date, comments) =>
+    show = (id, type, address, date, comments) =>
     {
+
+        this.currentCommentId = id;
         let com =comments;
         
         this.setState({type:type, address:address, date:date, comments:com});
-        console.log("In show()");
+        console.log("In show(), id = " + id);
         $('#accident-detail').animate(
             {
                 'left': '0%'
             }, 500
         )
+
+
     }
 
     showCommentInput = () =>
@@ -46,8 +52,18 @@ class AccidentDetails extends Component
 
     hideInput()
     {
-        $('#accident-detail-content').show();
         $('#input-container').hide();
+        $('#accident-detail-content').show();        
+        $("#accident-comments").animate({ scrollTop: $('#accident-comments').prop("scrollHeight")}, 1000);
+    }
+
+    insertComment = () =>
+    {
+        console.log("Inserting comment " + $('#input').val() + " on "+ this.currentCommentId );
+        $('#accident-comments').append('<p> 👉' +$('#input').val() + '</p>');
+        $('#input').val('');
+        $('#accident-comments').scrollTop($('#accident-comments')[0].scrollHeight);
+        this.hideInput();
     }
 
     render()
@@ -73,10 +89,10 @@ class AccidentDetails extends Component
                                         
                     </div>
                     <div id="input-container">
-                        <textarea>
+                        <textarea id="input">
                         </textarea>
                         <br/>
-                        <button id="validate-comment">Ok</button> 
+                        <button id="validate-comment" onClick={() => this.insertComment()}>Ok</button> 
                         <button onClick={() => this.hideInput()}>Back</button> 
                     </div>
 
