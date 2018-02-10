@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 class NearbyAccidentNotifier extends Component
 {
+    state = { notified:[] };
     componentDidMount()
     {
         $('#nearby-accident-popup').css('width', $(window).width());
@@ -15,16 +16,36 @@ class NearbyAccidentNotifier extends Component
     //The accidents are passed, in markers form (??? , for right now, yes, marker form)
     checkNearbyAccidents = (currentPosition, accidentsList) =>
     {
-        console.log('In checkNearbyAccidents');
-        console.log('Received current position = ' );
-        console.log( currentPosition);
-        console.log('Received accidentsList = ');
-        console.log(accidentsList);
+        let debug  = false;
+        if(debug)
+        {
+            console.log('In checkNearbyAccidents');
+            console.log('Received current position = ' );
+            console.log( currentPosition);
+            console.log('Received accidentsList = ');
+            console.log(accidentsList);
+        }
+       
 
+        for (let index = 0; index < accidentsList.length; index++) 
+        {
+            if((Math.abs(accidentsList[index].latitude - currentPosition.lat) < 0.0008) && (Math.abs(accidentsList[index].longitude - currentPosition.lng)) < 0.004)
+            {
+                if(!(this.state.notified.indexOf(accidentsList[index].id) > -1))
+                {
+                    console.log("this one not in state");
+                    let not = this.state.notified;
+                    not.push(accidentsList[index].id);
+                    this.setState({notified : not});
+                    this.showNearbyAccidentPopup();
+                }               
+            }            
+        }
     }
 
     showNearbyAccidentPopup = () =>
     {
+        console.log("Showing an accident nearby");
        
         $('#nearby-accident-popup').show();
         $('#nearby-accident-popup').animate({

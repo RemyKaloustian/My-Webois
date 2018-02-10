@@ -98,7 +98,7 @@ export default class MapPage extends React.Component
        {
         this.setState({center: value});   
        // console.log(this.state.center); 
-       console.log(this.props.notifier); 
+       //console.log(this.props.notifier); 
         //this.props.not.checkNearbyAccidents(value, this.state.markers);
         this.props.notifier(value, this.state.markers); 
       });
