@@ -20,8 +20,11 @@ class AccidentDetails extends Component
         )
     }
 
-    show = () =>
+    show = (type, address, date, comments) =>
     {
+        let com =comments;
+        
+        this.setState({type:type, address:address, date:date, comments:com});
         console.log("In show()");
         $('#accident-detail').animate(
             {
@@ -34,7 +37,7 @@ class AccidentDetails extends Component
     {
         return (<div id='accident-detail'>
                     <div id='accident-detail-content'>
-                        <h3>🔥{this.props.type}🔥</h3>
+                        <h3>🔥{this.state.type}🔥</h3>
                         <h4>{this.state.address}</h4>
                         <h4>{this.state.date}</h4>
                         <div id='accident-comments'>
@@ -42,7 +45,7 @@ class AccidentDetails extends Component
                             {
                                 this.state.comments.map(function(item, i)
                                 {
-                                    return (<p key={i}> item</p> );
+                                    return (<p key={i}> {item.comment}</p> );
                                 })
                             }                   
                         </div>

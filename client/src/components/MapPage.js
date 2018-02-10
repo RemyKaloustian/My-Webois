@@ -146,14 +146,14 @@ export default class MapPage extends React.Component
     console.log(results);
   }
 
-  clickMarker = (position, address, type, date)=>
+  clickMarker = (position, address, type, date, comments)=>
   {
     console.log("Clicked marker ");
     console.log(position);
     console.log(address);
     console.log(type);
     console.log(date);
-    this.refs.accidentDetails.show();    
+    this.refs.accidentDetails.show(type, address, date, comments);    
   }
 
  
@@ -184,7 +184,7 @@ export default class MapPage extends React.Component
             <Marker
               key={marker.id}
               position={{lat: marker.latitude, lng: marker.longitude}}
-              onClick={() =>this.clickMarker({lat: marker.latitude, lng: marker.longitude}, marker.address, marker.type, marker.date)}
+              onClick={() =>this.clickMarker({lat: marker.latitude, lng: marker.longitude}, marker.address, marker.type, marker.date, marker.comments)}
             >
             
             {this.props.isOpen && <InfoBox

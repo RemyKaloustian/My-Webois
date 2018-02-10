@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
        
         <MapPage ref="mapComponent" notifier={() => this.refs.nearbyAccidentNotifier.checkNearbyAccidents(this.refs.mapComponent.state.center, this.refs.mapComponent.state.markers)}
-          detailsPop = {this.refs.accidentDetails}
+          
         />
         <Menu 
           onManagerViewClick = {() => this.showManagerView()} 
