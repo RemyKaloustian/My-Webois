@@ -4,6 +4,7 @@ import MapPage from './MapPage' //The map component
 import Menu from './Menu'; //The bottom menu
 import ManagerView from './ManagerView'; //The view with the accidents in list
 import NewAccidentPopup from './NewAccidentPopup'; //The popup for declaring a new accident
+import NearbyAccidentNotifier from './NearbyAccidentNotifier';
 import {selectAccidents} from '../database/DBSelector'; //The methods for getting data
 import {insertAccident} from '../database/DBUpdater';// The methods for updating data
 
@@ -55,6 +56,8 @@ class App extends Component {
           />
         <ManagerView ref="managerViewComponent" />
         <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
+        <NearbyAccidentNotifier/>
+      
       </div>
     );
   }
