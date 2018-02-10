@@ -55,12 +55,13 @@ class NewAccidentPopup extends Component
     closeValidationPopup =() =>
     {
         $('#valid-accident').hide();
-        $('#valid-accident').css('bottom', '10%');
+        $('#valid-accident').css('top', '100%');
     }
 
     closePopupContainer = () =>
     {
-        $('#popup-container').hide();         
+        $('#popup-container').hide();    
+       this.closeValidationPopup();
     }
 
     render(){

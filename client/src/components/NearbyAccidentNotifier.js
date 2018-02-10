@@ -13,8 +13,13 @@ class NearbyAccidentNotifier extends Component
     }
 
     //The accidents are passed, in markers form (??? , for right now, yes, marker form)
-    checkNearbyAccidents = (curentPosition, accidentsList) =>
+    checkNearbyAccidents = (currentPosition, accidentsList) =>
     {
+        console.log('In checkNearbyAccidents');
+        console.log('Received current position = ' );
+        console.log( currentPosition);
+        console.log('Received accidentsList = ');
+        console.log(accidentsList);
 
     }
 

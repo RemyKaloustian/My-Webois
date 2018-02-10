@@ -93,10 +93,14 @@ export default class MapPage extends React.Component
     setInterval(() =>
     {
        //console.log("Updating position"); 
+       let self = this;
        this.getLocation().then((value) =>
        {
         this.setState({center: value});   
-       // console.log(this.state.center);   
+       // console.log(this.state.center); 
+       console.log(this.props.notifier); 
+        //this.props.not.checkNearbyAccidents(value, this.state.markers);
+        this.props.notifier(value, this.state.markers); 
       });
       }, 1000);
   }

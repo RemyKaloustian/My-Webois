@@ -48,7 +48,7 @@ class App extends Component {
     return (
       <div className="App">
        
-        <MapPage ref="mapComponent"/>
+        <MapPage ref="mapComponent" notifier={() => this.refs.nearbyAccidentNotifier.checkNearbyAccidents(this.refs.mapComponent.state.center, this.refs.mapComponent.state.markers)}/>
         <Menu 
           onManagerViewClick = {() => this.showManagerView()} 
           onMapViewClick = {() => this.showMapView()}
@@ -56,7 +56,7 @@ class App extends Component {
           />
         <ManagerView ref="managerViewComponent" />
         <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
-        <NearbyAccidentNotifier/>
+        <NearbyAccidentNotifier ref="nearbyAccidentNotifier"/>
       
       </div>
     );
