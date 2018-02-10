@@ -40,12 +40,13 @@ class AccidentDetails extends Component
                         <h3>🔥{this.state.type}🔥</h3>
                         <h4>{this.state.address}</h4>
                         <h4>{this.state.date}</h4>
+                        <h4>Comments</h4>
                         <div id='accident-comments'>
-                            <h4>Comments</h4>
+                            
                             {
                                 this.state.comments.map(function(item, i)
                                 {
-                                    return (<p key={i}> {item.comment}</p> );
+                                    return (<p key={i}>👉 {item.comment}</p> );
                                 })
                             }                   
                         </div>

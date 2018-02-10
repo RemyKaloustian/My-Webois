@@ -14,7 +14,7 @@ export function selectAccidents ()
         },
         
         {id:4, latitude:43.619456 , longitude: 7.08212670, address:'Impasse des tétons', type:'tétonesque', date:'09/04/2016',
-            comments:[{id:0, comment:'Par les partiluiers'}, {id:1, comment:'2 nos jour, les nouvelles tecnology sont partout'}] },
+            comments:[{id:0, comment:'Par les partiluiers'}, {id:1, comment:'2 nos jour, les nouvelles tecnology sont partout'},{id:0, comment:'Par les partiluiers'},{id:0, comment:'Par les partiluiers'},{id:0, comment:'Par les partiluiers'},{id:0, comment:'Par les partiluiers'},{id:0, comment:'Par les partiluiers'},{id:0, comment:'Par les partiluiers'},{id:0, comment:'Par les partiluiers'},{id:0, comment:'Par les partiluiers'},] },
         
         ];
         //43.6194559 , 7.082126799999999

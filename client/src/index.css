@@ -242,6 +242,7 @@ body
   position: absolute;
   width: 100%;
   height: 100%;
+  
   z-index: 88;
   background-color: #f5f5f5;
   color:#0050ef;
@@ -270,21 +271,42 @@ body
 {
   font-size: 1.7rem;
 }
-
-#accident-comments
-{
-  margin-top: 5%;
-}
-
-#accident-comments h4
+#accident-detail h4:last-of-type
 {
   border-bottom: 1px solid #0050ef;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
+
+#accident-comments 
+{
+  margin-top: 5%;
+  height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;  
+}
+
+#accident-comments p
+{
+  text-align: left;
+}
+
+
 
 #accident-detail button
 {
   width:50%;
+  text-decoration: none;
+  border:none;
+  background-color: #0050ef;
+  color: #f5f5f5;
+  font-family: GothamLight;
+  height:50px;
+}
+
+#accident-detail button:last-of-type
+{
+  background-color: #f44336;
 }
 
 
