@@ -11,6 +11,11 @@ class AccidentDetails extends Component
         comments:[]
     }
 
+    componentDidMount()
+    {
+        $('#input-container').hide();
+    }
+
     hide = ()=>
     {
         $('#accident-detail').animate(
@@ -33,6 +38,18 @@ class AccidentDetails extends Component
         )
     }
 
+    showCommentInput = () =>
+    {
+        $('#accident-detail-content').hide();
+        $('#input-container').show();
+    }
+
+    hideInput()
+    {
+        $('#accident-detail-content').show();
+        $('#input-container').hide();
+    }
+
     render()
     {
         return (<div id='accident-detail'>
@@ -40,21 +57,29 @@ class AccidentDetails extends Component
                         <h3>🔥{this.state.type}🔥</h3>
                         <h4>{this.state.address}</h4>
                         <h4>{this.state.date}</h4>
-                        <h4>Comments</h4>
-                        <div id='accident-comments'>
-                            
-                            {
-                                this.state.comments.map(function(item, i)
+                        
+                            <h4>Comments</h4>
+                            <div id='accident-comments'>
+                                
                                 {
-                                    return (<p key={i}>👉 {item.comment}</p> );
-                                })
-                            }                   
-                        </div>
-                        <button>Add Comment</button>   
-                        <button onClick={()=> this.hide()}>Back</button>                     
+                                    this.state.comments.map(function(item, i)
+                                    {
+                                        return (<p key={i}>👉 {item.comment}</p> );
+                                    })
+                                }                   
+                            </div>
+                            <button id="add-comment-btn" onClick={() => this.showCommentInput()}>Add Comment</button>  
+                            <button onClick={()=> this.hide()}>Back</button> 
+                                        
                     </div>
-        
-        
+                    <div id="input-container">
+                        <textarea>
+                        </textarea>
+                        <br/>
+                        <button id="validate-comment">Ok</button> 
+                        <button onClick={() => this.hideInput()}>Back</button> 
+                    </div>
+
                 </div>);
     }
 }
