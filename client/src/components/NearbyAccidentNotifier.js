@@ -20,11 +20,15 @@ class NearbyAccidentNotifier extends Component
     render()
     {
         return (
-            <div id="accident-notifier">
+            <div id="nearby-accident-notifier">
                 <button onClick={() => this.notifyNearByAccident()}>Test sound</button>
                 <audio id="notifier-sound">
                     <source src="assets/sound/warning.mp3" type="audio/mpeg"/>
                 </audio>
+                <div id="nearby-accident-popup">
+                    <h3>Warning, accident nearby</h3>
+                    <p>[adresse de l'accident]</p>
+                </div>
             </div>
         );
     }

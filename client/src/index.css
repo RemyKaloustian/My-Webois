@@ -203,7 +203,7 @@ body
 
 /******---- Accident notifier ******/
 
-#accident-notifier
+#nearby-accident-notifier
 {
   position: absolute;
   z-index: 333;
