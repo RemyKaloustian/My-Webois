@@ -53,7 +53,7 @@ class NearbyAccidentNotifier extends Component
             top: '0'
         }, 500);
 
-        let popuptime = 10//normal case, 3800
+        let popuptime = 3800//normal case, 3800
         let self = this;
         setTimeout(function(){
             self.hideNearbyAccidentPopup();
