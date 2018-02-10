@@ -15,7 +15,17 @@ class AccidentDetails extends Component
     {
         $('#accident-detail').animate(
             {
-                'margin-left': '100%'
+                'left': '100%'
+            }, 500
+        )
+    }
+
+    show = () =>
+    {
+        console.log("In show()");
+        $('#accident-detail').animate(
+            {
+                'left': '0%'
             }, 500
         )
     }

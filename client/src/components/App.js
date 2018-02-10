@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
        
         <MapPage ref="mapComponent" notifier={() => this.refs.nearbyAccidentNotifier.checkNearbyAccidents(this.refs.mapComponent.state.center, this.refs.mapComponent.state.markers)}
-         
+          detailsPop = {this.refs.accidentDetails}
         />
         <Menu 
           onManagerViewClick = {() => this.showManagerView()} 
@@ -60,7 +60,6 @@ class App extends Component {
         <ManagerView ref="managerViewComponent" />
         <NewAccidentPopup ref="accidentPopupComponent" onNewAccident={() => this.validateNewAccident()}/>
         <NearbyAccidentNotifier ref="nearbyAccidentNotifier"/>
-        <AccidentDetails ref="accidentDetails"/>
       </div>
     );
   }

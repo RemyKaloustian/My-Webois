@@ -2,7 +2,7 @@ import React from 'react';
 import $ from "jquery";
 import {GoogleMap, Marker, withGoogleMap, withScriptjs, InfoBox} from 'react-google-maps';
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
-
+import AccidentDetails from './AccidentDetails';
 //const google = window.google;
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -25,7 +25,7 @@ export default class MapPage extends React.Component
   state = 
   {
     markers: [],//the markers for accidents
-    toto:'hihi'
+    toto:'hihi'//just a test, will delete soon
   };
 
   _mapRef = null; //ma reference we will pass to child components
@@ -153,6 +153,7 @@ export default class MapPage extends React.Component
     console.log(address);
     console.log(type);
     console.log(date);
+    this.refs.accidentDetails.show();    
   }
 
  
@@ -163,6 +164,9 @@ export default class MapPage extends React.Component
     
   //Some serious shit is going down dere
     return (
+      <div>
+      <AccidentDetails ref="accidentDetails"/>
+
       <GoogleMapsWrapper
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{height: `100%`}}/>}
@@ -198,6 +202,7 @@ export default class MapPage extends React.Component
           ))}
         </MarkerClusterer>
       </GoogleMapsWrapper>
+      </div>
     )
   }
 }
