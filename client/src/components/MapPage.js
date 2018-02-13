@@ -3,7 +3,7 @@ import $ from "jquery";
 import {GoogleMap, Marker, withGoogleMap, withScriptjs, InfoBox} from 'react-google-maps';
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 import AccidentDetails from './AccidentDetails';
-//const google = window.google;
+import CurrentPositionMarker from './CurrentPositionMarker';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //      DON'T TOUCH THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -166,6 +166,7 @@ export default class MapPage extends React.Component
     return (
       <div>
       <AccidentDetails ref="accidentDetails"/>
+      <CurrentPositionMarker/>
 
       <GoogleMapsWrapper
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"

@@ -73,7 +73,7 @@ class NearbyAccidentNotifier extends Component
     notifyNearByAccident = () =>
     {
         console.log("Playing notifier sound");
-        $('#notifier-sound')[0].play();
+        //$('#notifier-sound')[0].play();
         this.showNearbyAccidentPopup();
     }
 
