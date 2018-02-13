@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 class NearbyAccidentNotifier extends Component
 {
-    state = { notified:[] };
+    state = { notified:[], accident:'', address:'' };
     componentDidMount()
     {
         $('#nearby-accident-popup').css('width', $(window).width());
@@ -37,7 +37,7 @@ class NearbyAccidentNotifier extends Component
                     console.log("this one not in state");
                     let not = this.state.notified;
                     not.push(accidentsList[index].id);
-                    this.setState({notified : not});
+                    this.setState({notified : not, accident:accidentsList[index].type, address:accidentsList[index].address});
                     this.notifyNearByAccident();
                 }               
             }            
@@ -50,7 +50,7 @@ class NearbyAccidentNotifier extends Component
        
         $('#nearby-accident-popup').show();
         $('#nearby-accident-popup').animate({
-            top: '0'
+            top: '-5'
         }, 500);
 
         let popuptime = 3800//normal case, 3800
@@ -87,10 +87,10 @@ class NearbyAccidentNotifier extends Component
                 </audio>
                 <div id="nearby-accident-popup">
                     <div id="nearby-accident-content">
-                        <h3>Accident nearby !</h3>
+                        <h3>{this.state.accident}</h3>
                         <br/>
                         <br/>
-                        <p>[adresse de l'accident]</p>
+                        <p>{this.state.address}</p>
                     </div>
                 </div>
             </div>
