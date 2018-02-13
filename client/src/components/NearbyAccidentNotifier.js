@@ -30,7 +30,7 @@ class NearbyAccidentNotifier extends Component
 
         for (let index = 0; index < accidentsList.length; index++) 
         {
-            if((Math.abs(accidentsList[index].latitude - currentPosition.lat) < 0.0008) && (Math.abs(accidentsList[index].longitude - currentPosition.lng)) < 0.004)
+            if((Math.abs(accidentsList[index].latitude - currentPosition.lat) <= 0.000008) && (Math.abs(accidentsList[index].longitude - currentPosition.lng)) <= 0.0009)
             {
                 if(!(this.state.notified.indexOf(accidentsList[index].id) > -1))
                 {

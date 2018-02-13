@@ -25,8 +25,30 @@ export default class MapPage extends React.Component
   state = 
   {
     markers: [],//the markers for accidents
-    toto:'hihi'//just a test, will delete soon
   };
+
+  _isDemo = true;
+  _currentPositionIndex = 0;
+  _demoPositions = [
+    {lat:43.617184, lng:7.071983},
+    {lat:43.617141, lng:7.072133},
+    {lat:43.617096, lng:7.072318},
+    {lat:43.617048, lng:7.072471},
+    {lat:43.617001, lng:7.072648},
+    {lat:43.616951, lng:7.072908},
+    {lat:43.616972, lng:7.073316},    
+    {lat:43.616962, lng:7.073506},        
+    {lat:43.616840, lng:7.073683},
+    {lat:43.616751, lng:7.073868},
+    {lat:43.616751, lng:7.073868},
+    {lat:43.616727, lng:7.073919},
+    {lat:43.616727, lng:7.073919},
+    {lat:43.616727, lng:7.073919},
+    {lat:43.616685, lng:7.074147},
+    {lat:43.616737, lng:7.074633},
+    {lat:43.617013, lng:7.074751},    
+   
+  ];
 
   _mapRef = null; //ma reference we will pass to child components
 
@@ -96,14 +118,24 @@ export default class MapPage extends React.Component
     {
        //console.log("Updating position"); 
        let self = this;
-       this.getLocation().then((value) =>
+       if(!this._isDemo)
        {
-        this.setState({center: value});   
-       // console.log(this.state.center); 
-       //console.log(this.props.notifier); 
-        //this.props.not.checkNearbyAccidents(value, this.state.markers);
-        this.props.notifier(value, this.state.markers); 
-      });
+          this.getLocation().then((value) =>
+          {
+          this.setState({center: value});         
+          //this.props.notifier(value, this.state.markers); 
+        });
+       }
+       else
+       {
+         if(this._currentPositionIndex < this._demoPositions.length)
+         {
+            this.setState({center: this._demoPositions[this._currentPositionIndex]});
+            this.props.notifier(this.state.center, this.state.markers); 
+            this._currentPositionIndex++;          
+         }
+       }
+       
       }, 1000);
   }
 
