@@ -201,6 +201,12 @@ body
   font-size: 1.4rem;
 }
 
+select
+{
+  
+  font-size: 1.3rem;
+}
+
 /******---- Accident notifier ******/
 
 #nearby-accident-notifier
@@ -336,5 +342,7 @@ body
   z-index: 22;
 
 }
+
+
 
 

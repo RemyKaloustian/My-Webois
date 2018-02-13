@@ -23,7 +23,6 @@ class NewAccidentPopup extends Component
     validateAccident = ()=>{
         this.props.onNewAccident();
         let self = this;
-        //Need to work on dat
         this.closeAccidentPopup();
         $('#valid-accident').show(); //showing confirmation
         $('#valid-accident').animate({
@@ -70,7 +69,17 @@ class NewAccidentPopup extends Component
                 <div id="accident-popup">
                 <img src="assets/close.png" id='close-popup'  onClick={()=>this.closePopup(300)}/>
                     <h4>New accident</h4> 
-                    <p>Do you really want to signal an accident at your position ?</p>
+                    <br/>
+                    <select>
+                        <option value="car">Accident voiture</option>
+                        <option value="child">Accident enfant</option>
+                        <option value="bicycle">Accident vélo</option>
+                        <option value="pedestrian">Accident piéton</option>
+                        <option value="senior">Accident senior</option>                        
+                    </select>
+                    <br/>
+                    <br/>
+                    
                     <button onClick={() => this.validateAccident()}>Validate</button>  
                 </div>
                 <div id="valid-accident">
