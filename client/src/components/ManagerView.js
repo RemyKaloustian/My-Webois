@@ -6,7 +6,7 @@ import AccidentItem from './AccidentItem';
 //The manager view shows the accidents in a list
 class ManagerView extends Component
 {
-    state = {accidents:[]};//the accidents list
+    state = {accidents:[], removedAccident:''};//the accidents list
 
     componentDidMount() //The manager view is never hidden, only its margin-left changes
     {
@@ -61,7 +61,7 @@ class ManagerView extends Component
                 {
                     this.state.accidents.map(function(item, i)
                     {
-                        return (<AccidentItem key={item.id} address={item.address} id={"item-"+i} />);
+                        return (<AccidentItem key={item.id} address={item.address} id={item.id}  />);
                     })
                 }
             </div>

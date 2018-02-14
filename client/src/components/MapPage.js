@@ -4,6 +4,7 @@ import {GoogleMap, Marker, withGoogleMap, withScriptjs, InfoBox} from 'react-goo
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 import AccidentDetails from './AccidentDetails';
 import CurrentPositionMarker from './CurrentPositionMarker';
+import { selectAccidents } from '../database/DBSelector';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //      DON'T TOUCH THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -18,6 +19,10 @@ const GoogleMapsWrapper = withScriptjs(withGoogleMap(props =>
   }}>{props.children}</GoogleMap>
 }));
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//  END OF    DON'T TOUCH THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 //The map component, displaying the map and the markers
 export default class MapPage extends React.Component 
 {
@@ -27,8 +32,9 @@ export default class MapPage extends React.Component
     markers: [],//the markers for accidents
   };
 
-  _isDemo = true;
+  _isDemo = false;
   _currentPositionIndex = 0;
+  //Path used for the demo
   _demoPositions = [
     {lat:43.617184, lng:7.071983},
     {lat:43.617141, lng:7.072133},
@@ -50,25 +56,14 @@ export default class MapPage extends React.Component
    
   ];
 
-  _mapRef = null; //ma reference we will pass to child components
-
+  _mapRef = null; //map reference we will pass to child components
 
   componentDidMount() 
-  {
-
-    //This is where we get the accident datas
-    console.log('Mounted @ ' + Date.now());
-    const url = "https://gist.githubusercontent.com/farrrr/dfda7dd7fccfec5474d3/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json";
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-      });
-
-      this.setState( {center:{lat:8.983491, lng:38.745232}, markers: []});
-      
-      //Make map operations in _handleMapMounted
+  {    
+    //If the current location somehow does not work, will center the map on Ethiopia
+      this.setState( {center:{lat:8.983491, lng:38.745232}, markers: []});      
+      // !!!! Make map operations in _handleMapMounted
   }
-
 
   //Promise to get the current position
   getLocation = () => new Promise((resolve, reject) => 
@@ -79,8 +74,7 @@ export default class MapPage extends React.Component
       {
         const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
         this.setState(latLng);
-        resolve(latLng);    //returning the latLng object    
-        
+        resolve(latLng);    //returning the latLng object            
       });
     } 
     else
@@ -116,27 +110,26 @@ export default class MapPage extends React.Component
     //Getting the current position every second                
     setInterval(() =>
     {
-       //console.log("Updating position"); 
-       let self = this;
-       if(!this._isDemo)
-       {
-          this.getLocation().then((value) =>
+        this.getLocation().then((value) =>
+        {
+          if(!this._isDemo)
           {
-          this.setState({center: value});         
-          //this.props.notifier(value, this.state.markers); 
-        });
-       }
-       else
-       {
-         if(this._currentPositionIndex < this._demoPositions.length)
-         {
-            this.setState({center: this._demoPositions[this._currentPositionIndex]});
-            this.props.notifier(this.state.center, this.state.markers); 
-            this._currentPositionIndex++;          
-         }
-       }
-       
-      }, 1000);
+            let resultsFromDB = selectAccidents(); //storing results
+            this.setState({center: value});  //centering the map on current position
+            this.fill(resultsFromDB);    //Filling the markers of accidents
+            this.props.notifier(value, this.state.markers);   //checking if accident nearby              
+          }
+          else
+          {
+            if(this._currentPositionIndex < this._demoPositions.length)
+            {
+                this.setState({center: this._demoPositions[this._currentPositionIndex]});
+                this.props.notifier(this.state.center, this.state.markers); 
+                this._currentPositionIndex++;          
+            }
+          }          
+      });       
+    }, 1000);
   }
 
   hide = () =>
@@ -165,7 +158,7 @@ export default class MapPage extends React.Component
     console.log(" New accident at "+ this.state.center.lat + " & "+ this.state.center.lng);
   }
 
-//get the results from the db and filling the markers
+//using the results from the db and filling the markers
   fill = (results) =>
   {
     let updatedMarkers = [];
@@ -187,7 +180,6 @@ export default class MapPage extends React.Component
     console.log(date);
     this.refs.accidentDetails.show(id, type, address, date, comments);    
   }
-
  
   render() 
   {
