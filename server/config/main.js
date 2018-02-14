@@ -2,7 +2,9 @@ module.exports = {
   // Secret key for JWT signing and encryption
   secret: 'super secret passphrase',
   // Database connection information
-  database: 'mongodb://localhost:27017/webProjectWaze',
+  databaseUrl: 'mongodb://localhost:27017/',
+  // Current DB
+  database: 'webProjectWaze',
   // Setting port for server
   port: 4000,
   // Configuring Mailgun API for sending transactional email
@@ -17,8 +19,10 @@ module.exports = {
   stripeApiKey: 'stripe api key goes here',
   // necessary in order to run tests in parallel of the main app
   test_port: 3001,
-  test_db: 'mern-starter-test',
+  test_db: 'webProjectWaze_test',
   test_env: 'test',
 
   assetStaticPath: '/static',
+
+  apiPath: '/api',
 };

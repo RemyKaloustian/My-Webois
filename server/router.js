@@ -2,6 +2,7 @@ const express = require('express'),
   passport = require('passport'),
   LoadCsvController = require('./controllers/load/csv'),
   CommentController = require('./controllers/comment'),
+  config = require('./config/main'),
   AccidentController = require('./controllers/accident');
 
 module.exports = function (app) {
@@ -24,6 +25,8 @@ module.exports = function (app) {
   
   // Add new accident
   accidentsRoutes.post('/', AccidentController.addNewAccident);
+
+  accidentsRoutes.delete('/:id', AccidentController.deleteAccident)
   //- -----------------------
 
 
@@ -46,35 +49,8 @@ module.exports = function (app) {
   accidentsRoutes.post('/:id/comments', CommentController.addNewCommentToAccident);
   //- -----------------------
 
-
-
-  // //= ========================
-  // // Game Users Routes
-  // //= ========================
-  // gameRoutes.use('/user', gameUserRoutes);
-
-  // // Add user to a game
-  // gameUserRoutes.post('/:pos', UserController.newUserForGame);
-
-  // //= ========================
-  // // Users Routes
-  // //= ========================
-  // apiRoutes.use('/user', userRoutes);
-
-  // // Update user position & lap
-  // userRoutes.put('/', UserController.updatePositionAndLapForUser);
-
-  // // Update user position & lap
-  // userRoutes.put('/points', UserController.addPointsToUser);
-
-  // // Get all users for a game
-  // userRoutes.get('/:gameId', UserController.allUsersForGame);
-
-  // // Get all users for a game
-  // userRoutes.get('/:gameId/:pos', UserController.userForGameAndPosition);
-  // //= ========================
-
+  
 
   // Set url for API group routes
-  app.use('/api', apiRoutes);
+  app.use(config.apiPath, apiRoutes);
 };

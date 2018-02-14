@@ -15,10 +15,13 @@ exports.getOneAccidentById = function (req, res, next) {
         });
     }
 
-    Accident.findById(req.params.id)
+    Accident.findOne({
+            _id: req.params.id,
+            deleted: false
+        })
         .populate('comments')
         .exec(function (err, a) {
-            if (err) {
+            if (err || !a) {
                 return res.status(404).json({
                     message: 'Can\'t find the accident.'
                 });
@@ -38,7 +41,9 @@ exports.getAllAccidents = function (req, res, next) {
     }
 
     // Else, find all accidents
-    Accident.find().populate('comments').exec(function (err, accidents) {
+    Accident.find({
+        deleted: false
+    }).populate('comments').exec(function (err, accidents) {
         if (err) {
             return res.status(500).json(err);
         }
@@ -53,7 +58,7 @@ exports.getAllAccidents = function (req, res, next) {
  * Special thanks to Robert Onodi, http://blog.robertonodi.me/how-to-use-geospatial-indexing-in-mongodb-using-express-and-mongoose/
  */
 getNearestAccident = function (req, res, next) {
-    console.log('--- GET NEAREST ---');
+    // console.log('--- GET NEAREST ---');
 
     // 2 kms radius
     var maxDistance = 200;
@@ -67,10 +72,11 @@ getNearestAccident = function (req, res, next) {
     coords[0] = parseFloat(req.query.longitude);
     coords[1] = parseFloat(req.query.latitude);
 
-    console.log(coords);
+    // console.log(coords);
 
-    // find a location
+    // Find a location
     Accident.find({
+        deleted: false,
         location: {
             $near: coords,
             $maxDistance: maxDistance
@@ -87,7 +93,7 @@ getNearestAccident = function (req, res, next) {
 exports.addNewAccident = function (req, res, next) {
     if (tools.isNullOrUndefined(req.body.latitude) ||
         tools.isNullOrUndefined(req.body.longitude)) {
-        res.status(400).json({
+        return res.status(400).json({
             message: 'Missing latitude and/or longitude'
         });
     }
@@ -112,15 +118,46 @@ exports.addNewAccident = function (req, res, next) {
             // Save it
             accident.save((err, a) => {
                 if (err) {
-                    return;
+                    return res.status(500).json({
+                        message: 'Internal error.'
+                    });
                 }
 
                 res.status(200).json(a);
             });
         })
         .catch(function (err) {
-            res.status(500).json({
-                message: 'An error occured'
+            return res.status(500).json({
+                message: 'An error occured',
+                error: err,
             });
         });
+}
+
+exports.deleteAccident = function (req, res, next) {
+    if (tools.isNullOrUndefined(req.params.id)) {
+        return res.status(400).json({
+            message: 'Missing id.'
+        });
+    }
+
+    Accident.findOneAndUpdate({
+        _id: req.params.id
+    }, {
+        $set: {
+            deleted: true
+        }
+    }, {
+        upsert: true
+    }, function (err, a) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Error while updating.'
+            });
+        }
+
+        return res.status(200).json({
+            message: 'Accident deleted successfully.'
+        });
+    });
 }

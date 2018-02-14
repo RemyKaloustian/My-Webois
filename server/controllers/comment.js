@@ -6,14 +6,18 @@ const Comment = require('../models/comment'),
 
 exports.addNewCommentToAccident = function (req, res, next) {
     if (tools.isNullOrUndefined(req.params.id)) {
-        res.status(400).json({
-            message: 'Missing id'
+        return res.status(400).json({
+            message: 'Missing id.'
+        });
+    } else if (tools.isNullOrUndefined(req.body.comment)) {
+        return res.status(400).json({
+            message: 'Missing comment.'
         });
     }
 
     // Create the accident
     const comment = new Comment({
-        name: req.body.name,
+        name: req.body.name || 'User',
         comment: req.body.comment,
     });
 

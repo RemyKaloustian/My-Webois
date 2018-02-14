@@ -28,7 +28,14 @@ const AccidentSchema = new Schema({
   description: { 
     type: String
   },
-  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  deleted: {
+    type: Boolean,
+    default: false
+  }
 }, {
   timestamps: true
 });
