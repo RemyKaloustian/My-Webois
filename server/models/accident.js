@@ -1,5 +1,6 @@
 // Importing Node packages required for schema
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 //= ===============================
@@ -25,10 +26,10 @@ const AccidentSchema = new Schema({
   number: {
     type: String
   },
-  description: { 
+  description: {
     type: String
   },
-  askedRemove: { 
+  askedRemove: {
     type: Number,
     default: 0
   },

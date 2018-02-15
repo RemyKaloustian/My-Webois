@@ -19,20 +19,19 @@ module.exports = function (app) {
 
   // Get all accidents || nearest
   accidentsRoutes.get('/', AccidentController.getAllAccidents);
-  
+
   // Get one accident by id
   accidentsRoutes.get('/:id', AccidentController.getOneAccidentById);
-  
+
   // Add new accident
   accidentsRoutes.post('/', AccidentController.addNewAccident);
-  
+
   // Update removal count for accident
   accidentsRoutes.put('/:id/remove', AccidentController.updateRemovalCount);
 
   // Mark accident to be removed
-  accidentsRoutes.delete('/:id', AccidentController.deleteAccident)
-  //- -----------------------
-
+  accidentsRoutes.delete('/:id', AccidentController.deleteAccident);
+  // - -----------------------
 
 
   //= ========================
@@ -42,18 +41,16 @@ module.exports = function (app) {
 
   // Load a CSV file
   loadRoutes.post('/csv', LoadCsvController.loadCsvFileAndSave);
-  //- -----------------------
+  // - -----------------------
 
-  
 
   //= ========================
   // Comments Routes
   //= ========================
   // Add new comment
   accidentsRoutes.post('/:id/comments', CommentController.addNewCommentToAccident);
-  //- -----------------------
+  // - -----------------------
 
-  
 
   // Set url for API group routes
   app.use(config.apiPath, apiRoutes);

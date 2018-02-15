@@ -16,11 +16,11 @@ mongoose.Promise = Promise;
 let server;
 if (process.env.NODE_ENV != config.test_env) {
   mongoose.connect(config.databaseUrl + config.database, { useMongoClient: true });
-  
+
   server = app.listen(config.port);
   console.log(`Your server is running on port ${config.port}.`);
 
-  app.use('/mongo_express', mongo_express(mongo_express_config))
+  app.use('/mongo_express', mongo_express(mongo_express_config));
 } else {
   mongoose.connect(config.databaseUrl + config.test_db, { useMongoClient: true });
 
