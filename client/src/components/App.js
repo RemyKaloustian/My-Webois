@@ -43,6 +43,7 @@ class App extends Component {
     insertAccident(this.refs.mapComponent.state.center);
   }
 
+  
   render() {
     //Adding the DB components, then the map, the menu, the manager view and the popup
     //In menu, we pass the functions for showing map/manager view, because we want the menu buttons to use thses functions

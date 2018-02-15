@@ -15,7 +15,8 @@ class AccidentItem extends Component
             marginLeft: '100%'
         }, 500,  () =>{
             $("#"+this.props.id).remove();
-            removeAccident(this.props.id.split('-')[1]);
+            removeAccident(this.props.id);
+            //this.props.
         });
     }
 
