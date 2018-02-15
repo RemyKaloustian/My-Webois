@@ -1,17 +1,18 @@
 ## Client side of Webois
 
-#### Instructions
+Done in ReactJS using the Google Maps wrapper for React : https://tomchentw.github.io/react-google-maps/#usage--configuration
 
-Multiple views possible (as much as we can):
-- User (map, comment incident)
-- List of incidents nearby
+The goal of the app on client side is to either ...
 
-Separate serious and not serious incidents
+Profile 1 : Basic  driving user
+ - Display the current position on the map 
+ - Show accidents on the map
+ - Notifies for nearby accidents
+ - Can comment on an accident
 
-We need something to check if you're a manager (or just a user)
+ Profile 2 : Manager
+ - See the accidents in a list
+ - Remove an accident
 
+ 
 
-Manager:
-- adds/deletes incident
-User:
-- comment incident, request removal of incident
