@@ -147,8 +147,6 @@ exports.deleteAccident = function (req, res, next) {
         $set: {
             deleted: true
         }
-    }, {
-        upsert: true
     }, function (err, a) {
         if (err) {
             return res.status(500).json({
@@ -158,6 +156,32 @@ exports.deleteAccident = function (req, res, next) {
 
         return res.status(200).json({
             message: 'Accident deleted successfully.'
+        });
+    });
+}
+
+exports.updateRemovalCount = function (res, res, next) {
+    if (tools.isNullOrUndefined(req.params.id)) {
+        return res.status(400).json({
+            message: 'Missing id.'
+        });
+    }
+
+    Accident.findOneAndUpdate({
+        _id: req.params.id
+    }, {
+        $inc: {
+            askedRemove: 1
+        }
+    }, function (err, a) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Error while updating.'
+            });
+        }
+
+        return res.status(200).json({
+            message: 'Accident updated.'
         });
     });
 }

@@ -73,6 +73,17 @@ Output:
 }
 ```
 
+## __`PUT`__ /api/accidents/:id/remove
+
+Update the counter of "asked deletion" of an accident.
+
+```js
+Output:
+{
+    "message": "Accident updated."
+}
+```
+
 ## __`DELETE`__ /api/accidents/:id
 
 Delete an existing accident.
