@@ -37,11 +37,11 @@ class App extends Component {
     this.refs.accidentPopupComponent.show();
   }
 
-  validateNewAccident = () =>{
+  /*validateNewAccident = () =>{
     //Showing the confirmation and inserting new accident
     this.refs.mapComponent.newAccident();
     insertAccident(this.refs.mapComponent.state.center);
-  }
+  }*/
 
   
   render() {

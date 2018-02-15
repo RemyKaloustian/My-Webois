@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import {  insertAccident } from '../database/DBUpdater';
 import 'bulma/css/bulma.css';
 
-//the new accident popup
+//The new accident popup
+//Shows when clicking 'Declare accident'
 class NewAccidentPopup extends Component
 {
     componentDidMount(){
@@ -21,18 +23,30 @@ class NewAccidentPopup extends Component
     }
 
     validateAccident = ()=>{
-        this.props.onNewAccident();
-        let self = this;
-        this.closeAccidentPopup();
-        $('#valid-accident').show(); //showing confirmation
-        $('#valid-accident').animate({
-            top: '40%'
-        }, 400, function(){
-            setTimeout(function(){
-                self.closePopupContainer();
-            }, 1500);
-        });
-    }
+        if (navigator.geolocation)    
+        {
+            navigator.geolocation.getCurrentPosition((position) => 
+            {
+                const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
+                insertAccident(latLng, $('#accident-type').val());
+                let self = this;
+                this.closeAccidentPopup();
+        
+                $('#valid-accident').show(); //showing confirmation
+                $('#valid-accident').animate({
+                    top: '40%'
+                }, 400, function(){
+                    setTimeout(function(){
+                        self.closePopupContainer();
+                    }, 1500);
+                });            
+            });
+        } 
+        else
+        { 
+            console.log( "Geolocation is not supported by this browser.");
+        }
+    }//validateAccident()
 
     closePopup = (time) =>{
         //PHAT animation
@@ -70,7 +84,7 @@ class NewAccidentPopup extends Component
                 <img src="assets/close.png" id='close-popup'  onClick={()=>this.closePopup(300)}/>
                     <h4>New accident</h4> 
                     <br/>
-                    <select>
+                    <select id="accident-type">
                         <option value="car">Accident voiture</option>
                         <option value="child">Accident enfant</option>
                         <option value="bicycle">Accident vélo</option>
