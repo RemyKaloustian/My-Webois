@@ -1,4 +1,4 @@
-# Server side of PartyTableInMyEzFridge
+# Server side of WebBois
 
 ## Requirements
 
