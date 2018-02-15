@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import {insertComment} from '../database/DBUpdater';
 
+//A panel to display details of the accident 
 class AccidentDetails extends Component
 {
 
@@ -12,10 +13,11 @@ class AccidentDetails extends Component
         comments:[]
     }
 
-    currentAccidentId = '0';
+    currentAccidentId = '3333';
 
     componentDidMount()
     {
+        //Hiding the input from the beginning
         $('#input-container').hide();
     }
 
@@ -28,9 +30,9 @@ class AccidentDetails extends Component
         )
     }
 
+    //Fills the panel with accident details
     show = (id, type, address, date, comments) =>
     {
-
         this.currentAccidentId = id;
         let com =comments;
         
@@ -41,8 +43,6 @@ class AccidentDetails extends Component
                 'left': '0%'
             }, 500
         )
-
-
     }
 
     showCommentInput = () =>
@@ -60,9 +60,6 @@ class AccidentDetails extends Component
 
     insertComment = () =>
     {
-        //console.log("Inserting comment " + $('#input').val() + " on "+ this.currentAccidentId );
-        //$('#accident-comments').append('<p> 👉' +$('#input').val() + '</p>');
-       
         //Inserting in DB
         insertComment(this.currentAccidentId, $('#input').val() );
         //Adding the comment to the details, temporarily, if you close and reopen the details before the map refresh, the new comment does not show
@@ -70,7 +67,6 @@ class AccidentDetails extends Component
         com.push({comment:$('#input').val()});
         this.setState(com);
         $('#input').val('');
-        $('#accident-comments').scrollTop($('#accident-comments')[0].scrollHeight);
         this.hideInput();
     }
 

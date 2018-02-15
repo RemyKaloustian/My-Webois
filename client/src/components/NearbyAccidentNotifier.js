@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 
-
+//Panel that shows only when passing by an accident
 class NearbyAccidentNotifier extends Component
 {
     state = { notified:[], accident:'', address:'' };

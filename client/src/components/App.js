@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   showManagerView = () =>  {
-    //this.refs.mapComponent.hide();
     //Showing the manager view, filling it with accidents, changing the button text
     this.refs.managerViewComponent.show();
     this.refs.managerViewComponent.fill(selectAccidents());

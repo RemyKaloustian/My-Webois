@@ -16,7 +16,6 @@ class AccidentItem extends Component
         }, 500,  () =>{
             $("#"+this.props.id).remove();
             removeAccident(this.props.id);
-            //this.props.
         });
     }
 
