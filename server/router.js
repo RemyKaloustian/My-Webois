@@ -25,7 +25,11 @@ module.exports = function (app) {
   
   // Add new accident
   accidentsRoutes.post('/', AccidentController.addNewAccident);
+  
+  // Update removal count for accident
+  accidentsRoutes.put('/:id/remove', AccidentController.updateRemovalCount);
 
+  // Mark accident to be removed
   accidentsRoutes.delete('/:id', AccidentController.deleteAccident)
   //- -----------------------
 

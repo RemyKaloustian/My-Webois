@@ -28,6 +28,10 @@ const AccidentSchema = new Schema({
   description: { 
     type: String
   },
+  askedRemove: { 
+    type: Number,
+    default: 0
+  },
   comments: [{
     type: Schema.Types.ObjectId,
     ref: 'Comment'
