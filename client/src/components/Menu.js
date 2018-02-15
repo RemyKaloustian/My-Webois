@@ -24,8 +24,8 @@ class Menu extends Component {
     render() {
       return (
         <div id="bottom-menu">    
-            <button id="left-menu" className="hvr-shutter-out-horizontal" onClick={() => this.switchView()}>Manager view</button>
-            <button id="right-menu" className="hvr-shutter-out-horizontal"   onClick={() => this.props.onNewAccidentClick()}>Declare accident</button>
+            <button id="left-menu"  onClick={() => this.switchView()}>Manager view</button>
+            <button id="right-menu"   onClick={() => this.props.onNewAccidentClick()}>Declare accident</button>
         </div>
         
       );

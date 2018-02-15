@@ -10,34 +10,24 @@ class ManagerView extends Component
 
     componentDidMount() //The manager view is never hidden, only its margin-left changes
     {
-        //$('#manager-view').hide();
         //Setting the max height in order to scroll when overflow
         $('#manager-view').css('max-height', $(window).height() - $('#bottom-menu').height());
     }
 
     show = () =>
     {
-        //$('#manager-view').show();
-        //$('#manager-view').addClass('animated-show-managerview');
-       // $('#manager-view').css('margin-left', '0px');
-
        //Making dat phat slide to show the manager view
         $("#manager-view").animate({
             marginLeft: '0px'
         }, 500);
-
     }
 
     hide = () =>
     {
-        //$('#manager-view').hide();
-        //$('#manager-view').css('margin-left', '100%');
-
         //Making dat phat slide to hide the manager view
         $("#manager-view").animate({
             marginLeft: '100%'
-        }, 500);
-        
+        }, 500);        
     }
 
     //Filling the view with results from db

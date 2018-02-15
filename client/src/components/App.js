@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   showManagerView = () =>  {
-    //this.refs.mapComponent.hide();
     //Showing the manager view, filling it with accidents, changing the button text
     this.refs.managerViewComponent.show();
     this.refs.managerViewComponent.fill(selectAccidents());
@@ -37,13 +36,6 @@ class App extends Component {
     this.refs.accidentPopupComponent.show();
   }
 
-  validateNewAccident = () =>{
-    //Showing the confirmation and inserting new accident
-    this.refs.mapComponent.newAccident();
-    insertAccident(this.refs.mapComponent.state.center);
-  }
-
-  
   render() {
     //Adding the DB components, then the map, the menu, the manager view and the popup
     //In menu, we pass the functions for showing map/manager view, because we want the menu buttons to use thses functions
