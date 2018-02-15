@@ -12,7 +12,9 @@ Input:
     "name": "Bob",
     "comment": "Accident not present."
 }
+```
 
+```js
 Output:
 {
     "_id": "4546hshd0E5sdjsd84384374",

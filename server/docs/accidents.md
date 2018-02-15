@@ -62,7 +62,9 @@ Input:
     "longitude": 7.43534,
     "latitude": 42.43434
 }
+```
 
+```js
 Output:
 {
     "_id": "45464590E5sdjsd84384374",
