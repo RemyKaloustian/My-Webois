@@ -14,5 +14,9 @@ Profile 1 : Basic  driving user
  - See the accidents in a list
  - Remove an accident
 
- 
+
+#### File description: 
+
+*/public/*  contains the final html file and the assets
+*/src/* contains the code 
 
