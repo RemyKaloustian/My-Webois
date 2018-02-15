@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import {insertComment} from '../database/DBUpdater';
 
 class AccidentDetails extends Component
 {
@@ -11,7 +12,7 @@ class AccidentDetails extends Component
         comments:[]
     }
 
-    currentCommentId = '0';
+    currentAccidentId = '0';
 
     componentDidMount()
     {
@@ -30,7 +31,7 @@ class AccidentDetails extends Component
     show = (id, type, address, date, comments) =>
     {
 
-        this.currentCommentId = id;
+        this.currentAccidentId = id;
         let com =comments;
         
         this.setState({type:type, address:address, date:date, comments:com});
@@ -59,8 +60,12 @@ class AccidentDetails extends Component
 
     insertComment = () =>
     {
-        console.log("Inserting comment " + $('#input').val() + " on "+ this.currentCommentId );
+        //console.log("Inserting comment " + $('#input').val() + " on "+ this.currentAccidentId );
         //$('#accident-comments').append('<p> 👉' +$('#input').val() + '</p>');
+       
+        //Inserting in DB
+        insertComment(this.currentAccidentId, $('#input').val() );
+        //Adding the comment to the details, temporarily, if you close and reopen the details before the map refresh, the new comment does not show
         let com = this.state.comments;
         com.push({comment:$('#input').val()});
         this.setState(com);

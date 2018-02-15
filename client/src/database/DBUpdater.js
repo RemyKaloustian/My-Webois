@@ -11,3 +11,9 @@ export  function insertAccident(accidentObj, type)
     console.log(accidentObj);
     console.log("Type =" + type)
 }
+
+export function insertComment(accidentId, comment )
+{
+    console.log("Inserted comment on id "+ accidentId);
+    console.log(comment);
+}
