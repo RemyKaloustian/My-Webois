@@ -1,5 +1,10 @@
 # Server side of WebBois
 
+## Docs
+
+* [Accidents API](./docs/accidents.md)
+* [Comments API](./docs/comments.md)
+
 ## Requirements
 
 You must have **Mongo** and **npm** installed on your computer.
