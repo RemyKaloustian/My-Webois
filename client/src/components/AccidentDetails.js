@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import $ from 'jquery';
 import {insertComment} from '../database/DBUpdater';
 
 //A panel to display details of the accident 
-class AccidentDetails extends Component
-{
+class AccidentDetails extends Component {
 
     state = {
-        type:'',
-        address:'',
-        date:'',
-        comments:[]
+        type: '',
+        address: '',
+        date: '',
+        comments: []
     }
 
     currentAccidentId = '3333';
 
-    componentDidMount()
-    {
+    componentDidMount() {
         //Hiding the input from the beginning
         $('#input-container').hide();
     }
 
-    hide = ()=>
-    {
+    hide = () => {
         $('#accident-detail').animate(
             {
                 'left': '100%'
@@ -31,12 +28,11 @@ class AccidentDetails extends Component
     }
 
     //Fills the panel with accident details
-    show = (id, type, address, date, comments) =>
-    {
+    show = (id, type, address, date, comments) => {
         this.currentAccidentId = id;
-        let com =comments;
-        
-        this.setState({type:type, address:address, date:date, comments:com});
+        let com = comments;
+
+        this.setState({type: type, address: address, date: date, comments: com});
         console.log("In show(), id = " + id);
         $('#accident-detail').animate(
             {
@@ -45,63 +41,139 @@ class AccidentDetails extends Component
         )
     }
 
-    showCommentInput = () =>
-    {
+    showCommentInput = () => {
         $('#accident-detail-content').hide();
         $('#input-container').show();
     }
 
-    hideInput()
-    {
+    hideInput() {
         $('#input-container').hide();
-        $('#accident-detail-content').show();        
-        $("#accident-comments").animate({ scrollTop: $('#accident-comments').prop("scrollHeight")}, 1000);
+        $('#accident-detail-content').show();
+        $("#accident-comments").animate({scrollTop: $('#accident-comments').prop("scrollHeight")}, 1000);
     }
 
-    insertComment = () =>
-    {
+    insertComment = () => {
         //Inserting in DB
-        insertComment(this.currentAccidentId, $('#input').val() );
+        insertComment(this.currentAccidentId, $('#input').val());
         //Adding the comment to the details, temporarily, if you close and reopen the details before the map refresh, the new comment does not show
         let com = this.state.comments;
-        com.push({comment:$('#input').val()});
+        com.push({comment: $('#input').val()});
         this.setState(com);
         $('#input').val('');
         this.hideInput();
     }
 
-    render()
-    {
-        return (<div id='accident-detail'>
-                    <div id='accident-detail-content'>
-                        <h3>🔥{this.state.type}🔥</h3>
-                        <h4>{this.state.address}</h4>
-                        <h4>{this.state.date}</h4>
-                        
-                            <h4>Comments</h4>
-                            <div id='accident-comments'>
-                                
-                                {
-                                    this.state.comments.map(function(item, i)
-                                    {
-                                        return (<p key={i}>👉 {item.comment}</p> );
-                                    })
-                                }                   
-                            </div>
-                            <button id="add-comment-btn" onClick={() => this.showCommentInput()}>Add Comment</button>  
-                            <button onClick={()=> this.hide()}>Back</button> 
-                                        
-                    </div>
-                    <div id="input-container">
-                        <textarea id="input" rows="15" cols="50" >
-                        </textarea>
-                        <br/>
-                        <button id="validate-comment" onClick={() => this.insertComment()}>Ok</button> 
-                        <button onClick={() => this.hideInput()}>Back</button> 
-                    </div>
+    render() {
+        return (<div id='accident-detail' style={styles.accidentDetail}>
+            <div id='accident-detail-content' style={styles.accidentDetailContent}>
+                <h3 style={styles.titleAccidentDetail}>🔥{this.state.type}🔥</h3>
+                <h4 style={styles.subTitleAccidentDetail}>{this.state.address}</h4>
+                <h4 style={styles.subTitleAccidentDetail}>{this.state.date}</h4>
 
-                </div>);
+                <h4 style={{
+                    ...styles.subTitleAccidentDetail,
+                    borderBottom: '1px solid #0050ef',
+                    marginBottom: '10px',
+                    marginTop: '10px'
+                }}>Comments</h4>
+                <div id='accident-comments' style={styles.accidentComments}>
+
+                    {
+                        this.state.comments.map(function (item, i) {
+                            return (<p key={i} style={styles.accidentText}>👉 {item.comment}</p>);
+                        })
+                    }
+                </div>
+                <button id="add-comment-btn" style={styles.accidentButton} onClick={() => this.showCommentInput()}>Add
+                    Comment
+                </button>
+                <button style={styles.backButton} onClick={() => this.hide()}>Back</button>
+
+            </div>
+            <div id="input-container" style={styles.inputContainer}>
+                        <textarea id="input" rows="15" cols="50" style={styles.textarea}>
+                            Add a comment...
+                        </textarea>
+                <br/>
+                <button style={styles.accidentButton} id="validate-comment" onClick={() => this.insertComment()}>Ok
+                </button>
+                <button style={styles.backButton} onClick={() => this.hideInput()}>Back</button>
+            </div>
+
+        </div>);
     }
 }
 
 export default AccidentDetails;
+
+
+const styles = {
+    accidentDetail: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        zIndex: 88,
+        backgroundColor: '#f5f5f5',
+        color: '#0050ef',
+        fontFamily: 'GothamLight',
+        left: '100%'
+
+    },
+    accidentDetailContent: {
+        textAlign: 'center',
+        width: '90%',
+        marginLeft: '50%',
+        transform: 'translateX(-50%)',
+        marginTop: '10%'
+    },
+    titleAccidentDetail: {
+        fontSize: '2rem',
+        borderBottom: 'solid 1px #0050ef',
+        marginBottom: '10%'
+    },
+    subTitleAccidentDetail: {
+        fontSize: '1.7rem'
+    },
+    accidentComments: {
+        marginTop: '5%',
+        height: '200px',
+        maxHeight: '200px',
+        overflowY: 'auto'
+    },
+    accidentText: {
+        textAlign: 'left'
+    },
+    accidentButton: {
+        width: '50%',
+        textDecoration: 'none',
+        border: 'none',
+        backgroundColor: '#0050ef',
+        color: '#f5f5f5',
+        fontFamily: 'Gothamlight',
+        height: '50px',
+        cursor: 'pointer'
+    },
+    backButton: {
+        width: '50%',
+        textDecoration: 'none',
+        border: 'none',
+        backgroundColor: '#f44336',
+        color: '#f5f5f5',
+        fontFamily: 'Gothamlight',
+        height: '50px',
+        cursor: 'pointer'
+    },
+    inputContainer: {
+        marginTop: '10%'
+    },
+    textarea: {
+        display: 'table',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '80%',
+        fontSize: '1.2rem',
+        border:'none',
+        overflow: 'auto'
+    }
+}
+;
