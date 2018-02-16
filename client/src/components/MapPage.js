@@ -215,8 +215,3 @@ export default class MapPage extends React.Component {
         )
     }
 }
-
-const currentPosition = {
-    height: '50px',
-    width: '50px'
-};
