@@ -24,10 +24,10 @@ class Menu extends Component {
     render() {
         return (
             <div style={styles.bottomMenu} id={"bottom-menu"}>
-                <button style={{...styles.buttonMenu, ...styles.leftMenu}} onClick={() => this.switchView()}>Manager
+                <button id={"left-menu"} style={{...styles.buttonMenu, ...styles.leftMenu}} onClick={() => this.switchView()}>Manager
                     view
                 </button>
-                <button style={{...styles.buttonMenu, ...styles.rightMenu}}
+                <button id={"right-menu"} style={{...styles.buttonMenu, ...styles.rightMenu}}
                         onClick={() => this.props.onNewAccidentClick()}>Declare accident
                 </button>
             </div>
@@ -42,12 +42,15 @@ const styles = {
         width: '50%',
         cursor: 'pointer',
         borderTop: 'none',
-        borderBottom: 'none'
+        borderBottom: 'none',
+        borderLeft: 'none',
+
     },
     rightMenu: {
         width: '50%',
         cursor: 'pointer',
         borderLeft: '2px rgba(169, 169, 169, 0.67)',
+        borderRight: 'none',
         borderTop: 'none',
         borderBottom: 'none'
     },
