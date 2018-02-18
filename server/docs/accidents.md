@@ -32,7 +32,7 @@ Output:
 
 ## __`GET`__ /api/accidents?longitude=_long_&latitude=_lat_
 
-Get all the accidents near _long_ & _lat_.
+Get all the accidents near _long_ & _lat_ __*(1.5km radius)*__.
 
 ```json
 Output:
