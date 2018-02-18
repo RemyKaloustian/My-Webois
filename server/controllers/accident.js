@@ -171,7 +171,7 @@ exports.deleteAccident = function (req, res, next) {
     });
 }
 
-exports.updateRemovalCount = function (res, res, next) {
+exports.updateRemovalCount = function (req, res, next) {
     if (tools.isNullOrUndefined(req.params.id)) {
         return res.status(400).json({
             message: 'Missing id.'
