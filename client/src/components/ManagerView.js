@@ -38,14 +38,15 @@ class ManagerView extends Component {
     }
 
     render() {
-        //This is basically like "for each accident, create an AccidentItem"     
+        //This is basically like "for each accident, create an AccidentItem"
+        console.log('ACCIDENTS', this.state.accidents);
         return (
             <div id="manager-view" style={styles.managerView}>
                 <h3 style={styles.title}>The manager view</h3>
                 <div>
                     {
-                        this.state.accidents.map(function (item, i) {
-                            return (<AccidentItem key={item.id} address={item.address} id={item.id}/>);
+                        this.state.accidents.map((item, i) => {
+                            return (<AccidentItem key={i} address={item.address} id={item._id}/>);
                         })
                     }
                 </div>

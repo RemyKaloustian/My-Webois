@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
 import $ from "jquery";
 
-import {removeAccident} from '../services/accidents-service';
+import {deleteAccident} from '../services/accidents-service';
 
 //An accident item is used in the manager view, to list the accidents
 class AccidentItem extends Component
 {
     state = {isActive:true}; //is used for display/hide
 
-    remove = ()=>
+    remove = () =>
     {
+        console.log(this.props.id);
         //No longer displaying
         $("#"+this.props.id).animate({
             marginLeft: '100%'
-        }, 500,  () =>{
+        }, 500,  () => {
             $("#"+this.props.id).remove();
-            removeAccident(this.props.id);
+            deleteAccident(this.props.id);
         });
     }
 
@@ -24,10 +25,17 @@ class AccidentItem extends Component
         return (           
             <div className='accident-item' id={this.props.id}>
                 <p className='accident-item-address'>{this.props.address}</p>
-                <button className='remove-accident-btn' onClick={()=>this.remove()}>Remove</button>
+                <button style={styles.button} className='remove-accident-btn' onClick={()=>this.remove()}>Remove</button>
             </div>      
         );
     }
 }
 
 export default AccidentItem;
+
+
+const styles = {
+    button: {
+        cursor: 'pointer'
+    }
+}
