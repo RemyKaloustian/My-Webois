@@ -58,19 +58,19 @@ exports.getAllAccidents = function (req, res, next) {
 getNearestAccident = function (req, res, next) {
     // console.log('--- GET NEAREST ---');
 
-    // 2 kms radius
-    var maxDistance = 200;
+    // 1.5 kms radius
+    var maxDistance = 1.5;
 
-    // we need to convert the distance to radians
-    // the raduis of Earth is approximately 6371 kilometers
-    maxDistance /= 6371;
+    // Convert distance by 110.57 (one degree is approximately 110.57 kilometers)
+    // Thanks https://stackoverflow.com/questions/7837731/units-to-use-for-maxdistance-and-mongodb
+    maxDistance /= 110.57;
 
-    // get coordinates [ <lat> , <lng> ]
+    // get coordinates [ <long> , <lat> ]
     var coords = [];
     coords[0] = parseFloat(req.query.longitude);
     coords[1] = parseFloat(req.query.latitude);
 
-    // console.log(coords);
+    console.log(coords, maxDistance);
 
     // Find a location
     Accident.find({
