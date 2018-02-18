@@ -88,7 +88,7 @@ class NewAccidentPopup extends Component
                     <select id="accident-type">
                         {
                             DataStore.instance._accidentTypeEnum.map(
-                                (res,index) => <option value={index}>{res}</option>
+                                (res,index) => <option value={index}>{res.name}</option>
                             )
                         }
                     </select>

@@ -10,13 +10,13 @@ class DataStore {
                 'Mortel'
             ];
             this._accidentTypeEnum = [
-                'Autre',
-                'Véhicules',
-                'Piétons',
-                'Vélos',
-                'Véhicule et piétons',
-                'Vélo et véhicule',
-                'Vélo et piéton',
+                {name : 'Autre', image: 'assets/icons/warning.png'},
+                {name: 'Véhicules', image: 'assets/icons/car.png'},
+                {name:'Piétons', image: 'assets/icons/pedestrian.png'},
+                {name:'Vélos',image: 'assets/icons/bicycle.png'},
+                {name:'Véhicule et piétons',image: 'assets/icons/pedCar.png'},
+                {name:'Vélo et véhicule',image: 'assets/icons/carBicycle.png'},
+                {name: 'Vélo et piéton',image: 'assets/icons/bicyclePed.png'},
             ];
             this._currentPosition = {lat : 0, lng : 0};
             DataStore.instance = this;

@@ -66,7 +66,8 @@ export function getNearbyAccidents(longitude, latitude) {
                 DataStore.instance.fillAccidents(res);
             }
         )
-    
+
+
 }
 
 export function getAccident(accidentId) {
@@ -79,16 +80,21 @@ export function getAccident(accidentId) {
                     ...data
                 };
                 DataStore.instance.addAccident(accident);
+                getAllOrNearby();
+
             }
         )
+
 }
 
 export function deleteAccident(accidentId) {
     fetch(API + 'accidents/' + accidentId, {method: 'DELETE', headers: headers})
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            getAllOrNearby();
+        })
         .catch(e => console.log(e));
-    getAllOrNearby();
 }
 
 export function insertComment(accidentId, comment) {
@@ -98,17 +104,23 @@ export function insertComment(accidentId, comment) {
         body: JSON.stringify({name: '', comment: comment})
     })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            getAllOrNearby();
+            console.log(data);
+        })
         .catch(e => console.log(e))
+
 }
 
 export function reportAccident(accidentId) {
 
     fetch(API + 'accidents/' + accidentId + '/remove', {method: 'PUT', headers: headers})
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            getAllOrNearby();
+        })
         .catch(e => console.log(e))
-    getAllOrNearby();
 
 }
 

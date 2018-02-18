@@ -180,6 +180,7 @@ export default class MapPage extends React.Component {
                         {this.state.markers.map((marker,index) => (
                             <Marker
                                 key={index}
+                                icon={DataStore.instance._accidentTypeEnum[marker.type].image}
                                 position={{lat: marker.latitude, lng: marker.longitude}}
                                 onClick={() => this.clickMarker(marker)}
                             >

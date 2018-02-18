@@ -64,9 +64,13 @@ class AccidentDetails extends Component {
     }
 
     render() {
+        let name = '';
+        if(DataStore.instance._accidentTypeEnum[this.state.marker.type])
+             name =  DataStore.instance._accidentTypeEnum[this.state.marker.type].name;
+
         return (<div id='accident-detail' style={styles.accidentDetail}>
             <div id='accident-detail-content' style={styles.accidentDetailContent}>
-                <h3 style={styles.titleAccidentDetail}>🔥{DataStore.instance._accidentTypeEnum[this.state.marker.type]},
+                <h3 style={styles.titleAccidentDetail}>🔥{name},
                     {DataStore.instance._severityEnum[this.state.marker.seriousness]}🔥</h3>
                 <h4 style={styles.subTitleAccidentDetail}>{this.state.marker.address}</h4>
                 <h4 style={styles.subTitleAccidentDetail}>{this.state.marker.date}</h4>
