@@ -176,6 +176,7 @@ export default class MapPage extends React.Component {
                     <MarkerClusterer
                         averageCenter
                         enableRetinaIcons
+                        minimumClusterSize={3}
                         gridSize={60}>
                         {this.state.markers.map((marker,index) => (
                             <Marker

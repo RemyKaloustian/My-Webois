@@ -81,7 +81,7 @@ class AccidentDetails extends Component {
                     marginBottom: '10px',
                     marginTop: '10px'
                 }}>Comments</h4>
-                <button onClick={() => reportAccident(this.currentAccidentId)}>Report</button>
+                <button style={styles.reportButton} onClick={() => reportAccident(this.currentAccidentId)}>Report</button>
                 <div id='accident-comments' style={styles.accidentComments}>
 
                     {
@@ -180,6 +180,15 @@ const styles = {
         fontSize: '1.2rem',
         border:'none',
         overflow: 'auto'
+    },
+    reportButton: {
+        backgroundColor: '#f44336',
+        border: 'none',
+        color: '#f5f5f5',
+        paddingBottom : '3px',
+        paddingLeft: '10px',
+        paddingRight: '10px',
+        cursor: 'pointer'
     }
 }
 ;
