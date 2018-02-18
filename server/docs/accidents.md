@@ -30,6 +30,30 @@ Output:
 ]
 ```
 
+## __`GET`__ /api/accidents?longitude=_long_&latitude=_lat_
+
+Get all the accidents near _long_ & _lat_.
+
+```json
+Output:
+[
+    {
+        "_id": "4546hshd0E5sdjsd84384374",
+        "location": [ 7.313117, 42.432343 ],
+        "comments": [
+            {
+                "name": "Bernard",
+                "comment": "Not present anymore."
+            },
+            {
+                "name": "Patrick",
+                "comment": "Not present!"
+            },
+        ]
+    },
+]
+```
+
 ## __`GET`__ /api/accidents/:id
 
 Get an accident with the given id.

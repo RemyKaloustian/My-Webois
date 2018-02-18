@@ -33,10 +33,8 @@ exports.getOneAccidentById = function (req, res, next) {
 
 exports.getAllAccidents = function (req, res, next) {
     // If we want the nearest 
-    if (req.query.longitude !== undefined &&
-        req.query.longitude !== null &&
-        req.query.latitude !== undefined &&
-        req.query.latitude !== null) {
+    if (!tools.isNullOrUndefined(req.query.longitude) &&
+        !tools.isNullOrUndefined(req.query.latitude)) {
         return getNearestAccident(req, res, next);
     }
 
