@@ -67,7 +67,7 @@ getLocationObject = function (object) {
     return geocoder.geocode(r);
 }
 
-exports.loadCsvFileAndSave = function (req, res, next) {
+exports.loadCsvFileFromGovAndSave = function (req, res, next) {
     const csvStream = csv.createStream({
         delimiter: ';', // default is ,
     });
@@ -93,13 +93,18 @@ exports.loadCsvFileAndSave = function (req, res, next) {
                         return Promise.reject('Google getting info error');
                     }
 
+                    const seriousness = tools.getRandomIntBetween(0, config.accidentSeriousness.length - 1),
+                        type = tools.getRandomIntBetween(0, config.accidentType.length - 1);
+
                     // Create the accident
                     const accident = new Accident({
                         location: [
                             g.longitude,
-                            g.latitude
+                            g.latitude,
                         ],
                         address: g.formattedAddress,
+                        seriousness: seriousness,
+                        type: type
                     });
 
                     // Save it
@@ -108,7 +113,9 @@ exports.loadCsvFileAndSave = function (req, res, next) {
                             return;
                         }
 
-                        console.log('Accident added: ' + g.formattedAddress);
+                        console.log('Accident added: ', a);
+                        console.log('-----');
+                        console.log('-----');
                     });
                 })
                 .catch(function (err) {

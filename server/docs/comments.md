@@ -6,7 +6,7 @@ accidentsRoutes.post('/:id/comments', CommentController.addNewCommentToAccident)
 
 Post a new comment to the given accident (id).
 
-```js
+```json
 Input:
 {
     "name": "Bob",
@@ -14,7 +14,7 @@ Input:
 }
 ```
 
-```js
+```json
 Output:
 {
     "_id": "4546hshd0E5sdjsd84384374",
@@ -32,7 +32,7 @@ Output:
 
 Get an accident with the given id.
 
-```js
+```json
 Output:
 {
     "_id": "45464590E5sdjsd84384374",
@@ -40,7 +40,7 @@ Output:
     "comments": [
         {
             "name": "Bernard",
-            "comment": "Not present anymore.
+            "comment": "Not present anymore."
         },
         {
             "name": "Patrick",
@@ -54,7 +54,7 @@ Output:
 
 Create a new accident.
 
-```js
+```json
 Input:
 {
     "longitude": 7.43534,
@@ -73,7 +73,7 @@ Output:
 
 Delete an existing accident.
 
-```js
+```json
 Output:
 {
     "message": "Accident deleted successfully."

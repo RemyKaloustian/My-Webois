@@ -106,6 +106,15 @@ exports.addNewAccident = function (req, res, next) {
 
             const g = geo[0];
 
+            const seriousness = req.body.seriousness || 0,
+                type = req.body.type || 0;
+
+            if (seriousness >= config.accidentSeriousness.length) {
+                return Promise.reject('Seriousness must be between 0 and ' + (config.accidentSeriousness.length - 1) + '.')
+            } else if (type >= config.accidentType.length) {
+                return Promise.reject('Type must be between 0 and ' + (config.accidentSeriousness.length - 1) + '.')
+            }
+
             // Create the accident
             const accident = new Accident({
                 location: [
@@ -113,6 +122,8 @@ exports.addNewAccident = function (req, res, next) {
                     g.latitude
                 ],
                 address: g.formattedAddress,
+                seriousness: seriousness,
+                type: type
             });
 
             // Save it

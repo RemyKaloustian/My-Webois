@@ -18,17 +18,12 @@ const AccidentSchema = new Schema({
         type: String
     },
     seriousness: {
-        type: String
+        type: Number,
+        default: 0,
     },
     type: {
-        type: String,
-        default: ''
-    },
-    number: {
-        type: String
-    },
-    description: {
-        type: String
+        type: Number,
+        default: 0
     },
     askedRemove: {
         type: Number,

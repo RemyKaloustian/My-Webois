@@ -40,7 +40,7 @@ module.exports = function (app) {
   accidentsRoutes.use('/load', loadRoutes);
 
   // Load a CSV file
-  loadRoutes.post('/csv', LoadCsvController.loadCsvFileAndSave);
+  loadRoutes.post('/csv/gov', LoadCsvController.loadCsvFileFromGovAndSave);
   // - -----------------------
 
 

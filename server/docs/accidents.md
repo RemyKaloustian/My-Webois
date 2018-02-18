@@ -4,7 +4,7 @@
 
 Get all the accidents
 
-```js
+```json
 Output:
 [
     {
@@ -34,7 +34,7 @@ Output:
 
 Get an accident with the given id.
 
-```js
+```json
 Output:
 {
     "_id": "45464590E5sdjsd84384374",
@@ -56,7 +56,7 @@ Output:
 
 Create a new accident.
 
-```js
+```json
 Input:
 {
     "longitude": 7.43534,
@@ -64,7 +64,7 @@ Input:
 }
 ```
 
-```js
+```json
 Output:
 {
     "_id": "45464590E5sdjsd84384374",
@@ -77,7 +77,7 @@ Output:
 
 Update the counter of "asked deletion" of an accident.
 
-```js
+```json
 Output:
 {
     "message": "Accident updated."
@@ -88,7 +88,7 @@ Output:
 
 Delete an existing accident.
 
-```js
+```json
 Output:
 {
     "message": "Accident deleted successfully."

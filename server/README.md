@@ -3,6 +3,7 @@
 ## Docs
 
 * [Accidents API](./docs/accidents.md)
+* [Load Files API](./docs/load.md)
 * [Comments API](./docs/comments.md)
 
 ## Requirements

@@ -25,4 +25,21 @@ module.exports = {
   assetStaticPath: '/static',
 
   apiPath: '/api',
+
+  accidentSeriousness: [
+    'Sans gravité',
+    'Léger',
+    'Grave',
+    'Mortel'
+  ],
+
+  accidentType: [
+    'Autre',
+    'Véhicules',
+    'Piétons',
+    'Vélos',
+    'Véhicule et piétons',
+    'Vélo et véhicule',
+    'Vélo et piéton',
+  ]
 };
