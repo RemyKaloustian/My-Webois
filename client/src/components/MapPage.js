@@ -3,7 +3,7 @@ import $ from "jquery";
 import {GoogleMap, Marker, withGoogleMap, withScriptjs, InfoBox} from 'react-google-maps';
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 import AccidentDetails from './AccidentDetails';
-import {selectAccidents} from '../database/DBSelector';
+import DataStore from "../services/data-store";
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //      DON'T TOUCH THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -99,7 +99,7 @@ export default class MapPage extends React.Component {
         setInterval(() => {
             this.getLocation().then((value) => {
                 if (!this._isDemo) {
-                    let resultsFromDB = selectAccidents(); //storing results
+                    let resultsFromDB = DataStore.instance.getAll(); //storing results
                     this.setState({center: value});  //centering the map on current position
                     this.fill(resultsFromDB);    //Filling the markers of accidents
                     this.props.notifier(value, this.state.markers);   //checking if accident nearby
@@ -129,10 +129,9 @@ export default class MapPage extends React.Component {
         let id = Math.floor(Math.random() * (20000 - 0) + 0);
         let updatedMarkers = this.state.markers;
         updatedMarkers.push({id: id, latitude: this.state.center.lat, longitude: this.state.center.lng});
-        console.log(updatedMarkers);
+        console.log('UPDATED MARKERS',updatedMarkers);
         console.log(this.state.center);
         console.log(this.state.markers);
-
         console.log(this.state);
         this.setState({markers: updatedMarkers});
         console.log(" New accident at " + this.state.center.lat + " & " + this.state.center.lng);
@@ -144,10 +143,11 @@ export default class MapPage extends React.Component {
         for (let index = 0; index < results.length; index++) {
             updatedMarkers.push(results[index]);
         }
+        console.log("UPDATED MARKERS FILL",updatedMarkers);
+        console.log("Markers", this.state.markers);
         this.setState({markers: updatedMarkers});
-
         console.log(results);
-    }
+    };
 
     clickMarker = (id, position, address, type, date, comments) => {
         console.log("Clicked marker ");
@@ -185,9 +185,9 @@ export default class MapPage extends React.Component {
                         averageCenter
                         enableRetinaIcons
                         gridSize={60}>
-                        {this.state.markers.map(marker => (
+                        {this.state.markers.map((marker,index) => (
                             <Marker
-                                key={marker.id}
+                                key={index}
                                 position={{lat: marker.latitude, lng: marker.longitude}}
                                 onClick={() => this.clickMarker(marker.id, {
                                     lat: marker.latitude,

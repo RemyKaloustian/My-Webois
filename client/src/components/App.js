@@ -5,28 +5,29 @@ import Menu from './Menu'; //The bottom menu
 import ManagerView from './ManagerView'; //The view with the accidents in list
 import NewAccidentPopup from './NewAccidentPopup'; //The popup for declaring a new accident
 import NearbyAccidentNotifier from './NearbyAccidentNotifier';
-import {selectAccidents} from '../database/DBSelector'; //The methods for getting data
-import {insertAccident} from '../database/DBUpdater';// The methods for updating data
+import {getAllAccidents, insertAccident} from '../services/accidents-service';// The methods for updating data
 import AccidentDetails from './AccidentDetails';
+import DataStore from "../services/data-store";
 
 //The main component
 class App extends Component {
 
   componentDidMount(){
     this.showMapView(); //Showing the map on launch
+      getAllAccidents();
   }
 
   showManagerView = () =>  {
     //Showing the manager view, filling it with accidents, changing the button text
     this.refs.managerViewComponent.show();
-    this.refs.managerViewComponent.fill(selectAccidents());
+    this.refs.managerViewComponent.fill(DataStore.instance.getAll());
     $('#left-menu').text("Map view");
   }
 
   showMapView = () => {
     //Showing the map, filling it with accidents, hiding the manager view, changing the button text
     this.refs.mapComponent.show();
-    this.refs.mapComponent.fill(selectAccidents());
+    this.refs.mapComponent.fill(DataStore.instance.getAll());
     this.refs.managerViewComponent.hide();
     $('#left-menu').text("Manager view");
     

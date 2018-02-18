@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import {insertComment} from '../database/DBUpdater';
+import {insertComment} from '../services/accidents-service';
 
 //A panel to display details of the accident 
 class AccidentDetails extends Component {
@@ -10,7 +10,7 @@ class AccidentDetails extends Component {
         address: '',
         date: '',
         comments: []
-    }
+    };
 
     currentAccidentId = '3333';
 

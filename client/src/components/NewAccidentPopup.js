@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import {  insertAccident } from '../database/DBUpdater';
+import {  insertAccident } from '../services/accidents-service';
 import 'bulma/css/bulma.css';
 
 //The new accident popup

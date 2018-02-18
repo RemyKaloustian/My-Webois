@@ -88,7 +88,7 @@ module.exports = {
   },
 
     // Specify the default keyname that should be picked from a document to display in collections list.
-    // Keynames can be specified for every database and collection.
+    // Keynames can be specified for every services and collection.
     // If no keyname is specified, it defaults to '_id', which is a mandatory field.
     // For Example :
     // defaultKeyNames{
