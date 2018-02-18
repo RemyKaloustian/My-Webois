@@ -2,20 +2,23 @@ class DataStore {
 
     constructor() {
         if (!DataStore.instance) {
-            this._accidents = [
-                // {
-                //     id: 0,
-                //     latitude: 43.616735,
-                //     longitude: 7.074767,
-                //     address: 'Carrefour Saint Phillipe',
-                //     type: 'Piéton percuté',
-                //     date: '09/04/2016',
-                //     comments: [{id: 0, comment: 'Les piétons sont débiles'}, {
-                //         id: 1,
-                //         comment: 'Skaters fréquents (et qui ne regardent même pas la route) '
-                //     }]
-                // }
-        ];
+            this._accidents = [];
+            this._severityEnum = [
+                'Sans gravité',
+                'Léger',
+                'Grave',
+                'Mortel'
+            ];
+            this._accidentTypeEnum = [
+                'Autre',
+                'Véhicules',
+                'Piétons',
+                'Vélos',
+                'Véhicule et piétons',
+                'Vélo et véhicule',
+                'Vélo et piéton',
+            ];
+            this._currentPosition = {lat : 0, lng : 0};
             DataStore.instance = this;
         } else
             return DataStore.instance;
@@ -36,6 +39,7 @@ class DataStore {
     getAll = () => {
         return this._accidents;
     };
+
 }
 
 const instance = new DataStore();

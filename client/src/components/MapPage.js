@@ -101,6 +101,7 @@ export default class MapPage extends React.Component {
                 if (!this._isDemo) {
                     let resultsFromDB = DataStore.instance.getAll(); //storing results
                     this.setState({center: value});  //centering the map on current position
+                    DataStore.instance._currentPosition = value;
                     this.fill(resultsFromDB);    //Filling the markers of accidents
                     this.props.notifier(value, this.state.markers);   //checking if accident nearby
                 }
@@ -129,7 +130,6 @@ export default class MapPage extends React.Component {
         let id = Math.floor(Math.random() * (20000 - 0) + 0);
         let updatedMarkers = this.state.markers;
         updatedMarkers.push({id: id, latitude: this.state.center.lat, longitude: this.state.center.lng});
-        console.log('UPDATED MARKERS',updatedMarkers);
         console.log(this.state.center);
         console.log(this.state.markers);
         console.log(this.state);
@@ -143,19 +143,11 @@ export default class MapPage extends React.Component {
         for (let index = 0; index < results.length; index++) {
             updatedMarkers.push(results[index]);
         }
-        console.log("UPDATED MARKERS FILL",updatedMarkers);
-        console.log("Markers", this.state.markers);
         this.setState({markers: updatedMarkers});
-        console.log(results);
     };
 
-    clickMarker = (id, position, address, type, date, comments) => {
-        console.log("Clicked marker ");
-        console.log(position);
-        console.log(address);
-        console.log(type);
-        console.log(date);
-        this.refs.accidentDetails.show(id, type, address, date, comments);
+    clickMarker = (marker) => {
+        this.refs.accidentDetails.show(marker);
     }
 
     render() {
@@ -189,10 +181,7 @@ export default class MapPage extends React.Component {
                             <Marker
                                 key={index}
                                 position={{lat: marker.latitude, lng: marker.longitude}}
-                                onClick={() => this.clickMarker(marker.id, {
-                                    lat: marker.latitude,
-                                    lng: marker.longitude
-                                }, marker.address, marker.type, marker.date, marker.comments)}
+                                onClick={() => this.clickMarker(marker)}
                             >
 
                                 {this.props.isOpen && <InfoBox

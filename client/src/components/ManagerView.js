@@ -34,19 +34,20 @@ class ManagerView extends Component {
             resaccidents.push(results[index]);
         }
         this.setState({accidents: resaccidents});//setting the accidents
-        console.log(this.state.accidents);
     }
 
     render() {
         //This is basically like "for each accident, create an AccidentItem"
-        console.log('ACCIDENTS', this.state.accidents);
+        let accidentSorted = this.state.accidents.sort((a,b)=> {
+           return b.askedRemove - a.askedRemove;
+        });
         return (
             <div id="manager-view" style={styles.managerView}>
                 <h3 style={styles.title}>The manager view</h3>
                 <div>
                     {
-                        this.state.accidents.map((item, i) => {
-                            return (<AccidentItem key={i} address={item.address} id={item._id}/>);
+                        accidentSorted.map((item, i) => {
+                            return (<AccidentItem key={i} address={item.address} id={item._id} reports={item.askedRemove}/>);
                         })
                     }
                 </div>

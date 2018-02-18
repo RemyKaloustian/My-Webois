@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import {  insertAccident } from '../services/accidents-service';
 import 'bulma/css/bulma.css';
+import DataStore from "../services/data-store";
 
 //The new accident popup
 //Shows when clicking 'Declare accident'
@@ -28,7 +29,7 @@ class NewAccidentPopup extends Component
             navigator.geolocation.getCurrentPosition((position) => 
             {
                 const latLng = {lat:position.coords.latitude, lng: position.coords.longitude};
-                insertAccident(latLng, $('#accident-type').val());
+                insertAccident(latLng, $('#accident-type').val(),$('#severity-type').val());
                 let self = this;
                 this.closeAccidentPopup();
         
@@ -85,11 +86,18 @@ class NewAccidentPopup extends Component
                     <h4>New accident</h4> 
                     <br/>
                     <select id="accident-type">
-                        <option value="car">Accident voiture</option>
-                        <option value="child">Accident enfant</option>
-                        <option value="bicycle">Accident vélo</option>
-                        <option value="pedestrian">Accident piéton</option>
-                        <option value="senior">Accident senior</option>                        
+                        {
+                            DataStore.instance._accidentTypeEnum.map(
+                                (res,index) => <option value={index}>{res}</option>
+                            )
+                        }
+                    </select>
+                    <select id={"severity-type"}>
+                        {
+                            DataStore.instance._severityEnum.map(
+                                (res,index) => <option value={index}>{res}</option>
+                            )
+                        }
                     </select>
                     <br/>
                     <br/>
