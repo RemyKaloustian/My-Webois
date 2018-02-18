@@ -84,7 +84,9 @@ Create a new accident.
 Input:
 {
     "longitude": 7.43534,
-    "latitude": 42.43434
+    "latitude": 42.43434,
+    "seriousness": 1, // Optionnal
+    "type": 2, // Optionnal
 }
 ```
 
@@ -93,6 +95,8 @@ Output:
 {
     "_id": "45464590E5sdjsd84384374",
     "location": [ 7.43534, 42.43434 ],
+    "seriousness": 1,
+    "type": 2,
     "comments": []
 }
 ```
