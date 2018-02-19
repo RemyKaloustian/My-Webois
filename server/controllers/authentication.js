@@ -1,9 +1,9 @@
 const tools = require('../tools/tools'),
-  user = require('../models/authentications'),
+  User = require('../models/authentications'),
   config = require('../config/main');
 
 exports.login = function (req, res, next) {
-  const params = req.params;
+  const params = req.body;
 
   console.log(params);
 
@@ -26,16 +26,22 @@ exports.login = function (req, res, next) {
     }
     const auth = verifyCredentials(params, credentials);
     if (auth) {
-      return res.status(200).json(auth);
+      return res.status(200).json({
+        success: auth,
+        message: 'Login successful.'
+      });
     }
 
-    return res.status(404).json(auth);
+    return res.status(404).json({
+      success: auth,
+      message: 'Login failed.'
+    });
   });
 };
 
 verifyCredentials = function (user1, user2) {
   if ((user1.username === user2.username) &&
-        (user1.password() === user2.password())) {
+        (user1.password === user2.password)) {
     return true;
   }
   return false;
