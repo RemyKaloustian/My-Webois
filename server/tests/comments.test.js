@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"),
     config = require('../config/main'),
-    Comment = require('../models/comment'),
+    Comment = require('../models/comment.model'),
     Accident = require('../models/accident');
 
 //Require the dev-dependencies

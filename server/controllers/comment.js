@@ -1,4 +1,4 @@
-const Comment = require('../models/comment'),
+const Comment = require('../models/comment.model'),
     Accident = require('../models/accident'),
     config = require('../config/main'),
     AccidentController = require('./accident'),
