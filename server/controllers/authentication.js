@@ -1,12 +1,14 @@
-const tools = require('../config/main'),
-  user = require('../models/user'),
+const tools = require('../tools/tools'),
+  user = require('../models/authentications'),
   config = require('../config/main');
 
 exports.login = function (req, res, next) {
   const params = req.params;
 
-  if (!tools.isNullOrUndefined(params.username) &&
-    !tools.isNullOrUndefined(params.password)) {
+  console.log(params);
+
+  if (tools.isNullOrUndefined(params.username) ||
+    tools.isNullOrUndefined(params.password)) {
     return res.status(400).json({
       message: 'Malformed login credentials.'
     });
@@ -40,7 +42,31 @@ verifyCredentials = function (user1, user2) {
 };
 
 exports.register = function (req, res, next) {
-  const params = req.params;
+  const params = req.body;
+
+  console.log(params);
+
+  if (tools.isNullOrUndefined(params.username) ||
+  tools.isNullOrUndefined(params.password)) {
+    return res.status(400).json({
+      message: 'Malformed credentials'
+    });
+  }
+
+  const newUser = new User();
+  newUser.username = params.username;
+  newUser.password = params.password;
+
+  newUser.save((err, u) => {
+    if (err) {
+      return res.status(403).json({
+        message: 'User registral rejected.'
+      });
+    }
+
+    res.status(200).json(u);
+  });
+
 
   return res.status(404);
 };
