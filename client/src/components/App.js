@@ -5,8 +5,7 @@ import Menu from './Menu'; //The bottom menu
 import ManagerView from './ManagerView'; //The view with the accidents in list
 import NewAccidentPopup from './NewAccidentPopup'; //The popup for declaring a new accident
 import NearbyAccidentNotifier from './NearbyAccidentNotifier';
-import {getAllAccidents, insertAccident} from '../services/accidents-service';// The methods for updating data
-import AccidentDetails from './AccidentDetails';
+import {getAllOrNearby} from '../services/accidents-service';// The methods for updating data
 import DataStore from "../services/data-store";
 
 //The main component
@@ -14,7 +13,7 @@ class App extends Component {
 
   componentDidMount(){
     this.showMapView(); //Showing the map on launch
-      getAllAccidents();
+    getAllOrNearby();
   }
 
   showManagerView = () =>  {

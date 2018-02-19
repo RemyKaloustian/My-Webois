@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import {insertComment} from '../services/accidents-service';
+import {insertComment, reportAccident} from '../services/accidents-service';
+import DataStore from "../services/data-store";
 
 //A panel to display details of the accident 
 class AccidentDetails extends Component {
 
     state = {
-        type: '',
-        address: '',
-        date: '',
-        comments: []
+        marker: {
+            comments: [],
+            seriousness: null,
+            type: null,
+            _id: null
+        }
     };
 
     currentAccidentId = '3333';
@@ -28,12 +31,9 @@ class AccidentDetails extends Component {
     }
 
     //Fills the panel with accident details
-    show = (id, type, address, date, comments) => {
-        this.currentAccidentId = id;
-        let com = comments;
-
-        this.setState({type: type, address: address, date: date, comments: com});
-        console.log("In show(), id = " + id);
+    show = (marker) => {
+        this.currentAccidentId = marker._id;
+        this.setState({marker: marker});
         $('#accident-detail').animate(
             {
                 'left': '0%'
@@ -56,7 +56,7 @@ class AccidentDetails extends Component {
         //Inserting in DB
         insertComment(this.currentAccidentId, $('#input').val());
         //Adding the comment to the details, temporarily, if you close and reopen the details before the map refresh, the new comment does not show
-        let com = this.state.comments;
+        let com = this.state.marker.comments;
         com.push({comment: $('#input').val()});
         this.setState(com);
         $('#input').val('');
@@ -64,11 +64,16 @@ class AccidentDetails extends Component {
     }
 
     render() {
+        let name = '';
+        if(DataStore.instance._accidentTypeEnum[this.state.marker.type])
+             name =  DataStore.instance._accidentTypeEnum[this.state.marker.type].name;
+
         return (<div id='accident-detail' style={styles.accidentDetail}>
             <div id='accident-detail-content' style={styles.accidentDetailContent}>
-                <h3 style={styles.titleAccidentDetail}>🔥{this.state.type}🔥</h3>
-                <h4 style={styles.subTitleAccidentDetail}>{this.state.address}</h4>
-                <h4 style={styles.subTitleAccidentDetail}>{this.state.date}</h4>
+                <h3 style={styles.titleAccidentDetail}>🔥{name},
+                    {DataStore.instance._severityEnum[this.state.marker.seriousness]}🔥</h3>
+                <h4 style={styles.subTitleAccidentDetail}>{this.state.marker.address}</h4>
+                <h4 style={styles.subTitleAccidentDetail}>{this.state.marker.date}</h4>
 
                 <h4 style={{
                     ...styles.subTitleAccidentDetail,
@@ -76,10 +81,11 @@ class AccidentDetails extends Component {
                     marginBottom: '10px',
                     marginTop: '10px'
                 }}>Comments</h4>
+                <button style={styles.reportButton} onClick={() => reportAccident(this.currentAccidentId)}>Report</button>
                 <div id='accident-comments' style={styles.accidentComments}>
 
                     {
-                        this.state.comments.map(function (item, i) {
+                        this.state.marker.comments.map(function (item, i) {
                             return (<p key={i} style={styles.accidentText}>👉 {item.comment}</p>);
                         })
                     }
@@ -174,6 +180,15 @@ const styles = {
         fontSize: '1.2rem',
         border:'none',
         overflow: 'auto'
+    },
+    reportButton: {
+        backgroundColor: '#f44336',
+        border: 'none',
+        color: '#f5f5f5',
+        paddingBottom : '3px',
+        paddingLeft: '10px',
+        paddingRight: '10px',
+        cursor: 'pointer'
     }
 }
 ;

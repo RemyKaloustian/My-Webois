@@ -25,6 +25,7 @@ class AccidentItem extends Component
         return (           
             <div className='accident-item' id={this.props.id}>
                 <p className='accident-item-address'>{this.props.address}</p>
+                <p>Report requests : {this.props.reports}</p>
                 <button style={styles.button} className='remove-accident-btn' onClick={()=>this.remove()}>Remove</button>
             </div>      
         );
@@ -38,4 +39,4 @@ const styles = {
     button: {
         cursor: 'pointer'
     }
-}
+};
