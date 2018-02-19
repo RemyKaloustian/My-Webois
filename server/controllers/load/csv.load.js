@@ -1,4 +1,4 @@
-const Accident = require('../../models/accident'),
+const Accident = require('../../models/accident.model'),
     config = require('../../config/main'),
     csv = require('csv-stream'),
     request = require('request'),

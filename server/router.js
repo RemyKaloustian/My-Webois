@@ -1,9 +1,9 @@
 const express = require('express'),
   passport = require('passport'),
   LoadCsvController = require('./controllers/load/csv.load'),
-  CommentController = require('./controllers/comment'),
+  CommentController = require('./controllers/comment.controller'),
   config = require('./config/main'),
-  AccidentController = require('./controllers/accident'),
+  AccidentController = require('./controllers/accident.controller'),
   AuthController = require('./controllers/authentication');
 
 module.exports = function (app) {

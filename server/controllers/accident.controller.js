@@ -1,4 +1,4 @@
-const Accident = require('../models/accident'),
+const Accident = require('../models/accident.model'),
     config = require('../config/main'),
     tools = require('../tools/tools'),
     NodeGeocoder = require('node-geocoder');
