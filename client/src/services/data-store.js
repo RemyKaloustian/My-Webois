@@ -19,6 +19,7 @@ class DataStore {
                 {name: 'Bicycle & pedestrian',image: 'assets/icons/bicyclePed.png'},
             ];
             this._currentPosition = {lat : 0, lng : 0};
+            this._userConnected = false;
             DataStore.instance = this;
         } else
             return DataStore.instance;
