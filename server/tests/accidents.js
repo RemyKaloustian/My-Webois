@@ -151,6 +151,33 @@ describe('Accidents', () => {
     });
 
 
+
+    //- -----------------
+
+    /*
+     * Test the /PUT/:id/remove
+     */
+    describe('/PUT/:id/remove accident', () => {
+
+        it('it should INCREMENT askedRemove counter', (done) => {
+
+            antibesAccident.save((err, accident) => {
+                server
+                    .put(getApiPath() + '/accidents/' + accident.id + '/remove')
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('message').eql('Accident updated.');
+                        done();
+                    });
+            });
+
+        });
+
+    });
+
+
+
     //- -----------------
 
     /*
