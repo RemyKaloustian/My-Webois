@@ -1,5 +1,5 @@
 const mongoose = require("mongoose"),
-    config = require('../config/main'),
+    config = require('../config/main.config'),
     Accident = require('../models/accident.model');
 
 //Require the dev-dependencies

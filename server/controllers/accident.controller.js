@@ -1,5 +1,5 @@
 const Accident = require('../models/accident.model'),
-    config = require('../config/main'),
+    config = require('../config/main.config'),
     tools = require('../tools/tools'),
     NodeGeocoder = require('node-geocoder');
 
@@ -34,7 +34,7 @@ exports.getOneAccidentById = function (req, res, next) {
 }
 
 exports.getAllAccidents = function (req, res, next) {
-    // If we want the nearest 
+    // If we want the nearest
     if (!tools.isNullOrUndefined(req.query.longitude) &&
         !tools.isNullOrUndefined(req.query.latitude)) {
         return getNearestAccident(req, res, next);
@@ -54,7 +54,7 @@ exports.getAllAccidents = function (req, res, next) {
 
 /**
  * Get nearest accident from { latitude, longitude }
- * 
+ *
  * Special thanks to Robert Onodi, http://blog.robertonodi.me/how-to-use-geospatial-indexing-in-mongodb-using-express-and-mongoose/
  */
 getNearestAccident = function (req, res, next) {

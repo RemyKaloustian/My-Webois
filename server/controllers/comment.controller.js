@@ -1,6 +1,6 @@
 const Comment = require('../models/comment.model'),
     Accident = require('../models/accident.model'),
-    config = require('../config/main'),
+    config = require('../config/main.config'),
     AccidentController = require('./accident.controller'),
     tools = require('../tools/tools');
 

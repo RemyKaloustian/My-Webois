@@ -1,5 +1,5 @@
 const mongoose = require("mongoose"),
-    config = require('../config/main'),
+    config = require('../config/main.config'),
     Comment = require('../models/comment.model'),
     Accident = require('../models/accident.model');
 

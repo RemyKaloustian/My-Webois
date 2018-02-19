@@ -1,6 +1,6 @@
 const tools = require('../tools/tools'),
-  User = require('../models/authentications'),
-  config = require('../config/main');
+  User = require('../models/user.model'),
+  config = require('../config/main.config');
 
 exports.login = function (req, res, next) {
   const params = req.body;

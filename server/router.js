@@ -2,9 +2,9 @@ const express = require('express'),
   passport = require('passport'),
   LoadCsvController = require('./controllers/load/csv.load'),
   CommentController = require('./controllers/comment.controller'),
-  config = require('./config/main'),
+  config = require('./config/main.config'),
   AccidentController = require('./controllers/accident.controller'),
-  AuthController = require('./controllers/authentication');
+  AuthController = require('./controllers/authentication.controller');
 
 module.exports = function (app) {
   // Initializing route groups
