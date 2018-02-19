@@ -1,6 +1,6 @@
 const express = require('express'),
   passport = require('passport'),
-  LoadCsvController = require('./controllers/load/csv'),
+  LoadCsvController = require('./controllers/load/csv.load'),
   CommentController = require('./controllers/comment'),
   config = require('./config/main'),
   AccidentController = require('./controllers/accident'),
