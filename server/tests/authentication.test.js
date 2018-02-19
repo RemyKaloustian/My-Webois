@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'),
-  config = require('../config/main'),
-  User = require('../models/authentications');
+  config = require('../config/main.config'),
+  User = require('../models/user.model');
 
 // Require the dev-dependencies
 const chai = require('chai'),

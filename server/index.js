@@ -6,8 +6,8 @@ const express = require('express'),
   router = require('./router'),
   mongoose = require('mongoose'),
   mongo_express = require('mongo-express/lib/middleware'),
-  mongo_express_config = require('./config/mongo_express'),
-  config = require('./config/main');
+  mongo_express_config = require('./config/mongo_express.config'),
+  config = require('./config/main.config');
 
 // Database Setup
 mongoose.Promise = Promise;
