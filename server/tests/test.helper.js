@@ -1,5 +1,5 @@
 
-const config = require('../config/main');
+const config = require('../config/main.config');
 
 process.env.NODE_ENV = config.test_env;
 process.env.MONGO_URL = `mongodb://localhost/${config.test_db}`;

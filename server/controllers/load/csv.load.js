@@ -1,5 +1,5 @@
-const Accident = require('../../models/accident'),
-    config = require('../../config/main'),
+const Accident = require('../../models/accident.model'),
+    config = require('../../config/main.config'),
     csv = require('csv-stream'),
     request = require('request'),
     tools = require('../../tools/tools'),

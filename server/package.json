@@ -4,7 +4,7 @@
   "description": "API server for WebProjectWaze, powered by Express.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -S --require ./tests/spec_helper.js --recursive ./tests",
+    "test": "mocha -S --require ./tests/test.helper.js --recursive ./tests",
     "dev": "nodemon index.js"
   },
   "keywords": [

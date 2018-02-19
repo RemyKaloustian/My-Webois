@@ -1,7 +1,7 @@
-const Comment = require('../models/comment'),
-    Accident = require('../models/accident'),
-    config = require('../config/main'),
-    AccidentController = require('./accident'),
+const Comment = require('../models/comment.model'),
+    Accident = require('../models/accident.model'),
+    config = require('../config/main.config'),
+    AccidentController = require('./accident.controller'),
     tools = require('../tools/tools');
 
 exports.addNewCommentToAccident = function (req, res, next) {

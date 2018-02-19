@@ -1,16 +1,18 @@
 const express = require('express'),
   passport = require('passport'),
-  LoadCsvController = require('./controllers/load/csv'),
-  CommentController = require('./controllers/comment'),
-  config = require('./config/main'),
-  AccidentController = require('./controllers/accident');
+  LoadCsvController = require('./controllers/load/csv.load'),
+  CommentController = require('./controllers/comment.controller'),
+  config = require('./config/main.config'),
+  AccidentController = require('./controllers/accident.controller'),
+  AuthController = require('./controllers/authentication.controller');
 
 module.exports = function (app) {
   // Initializing route groups
   const apiRoutes = express.Router(),
     accidentsRoutes = express.Router(),
     commentsRoutes = express.Router(),
-    loadRoutes = express.Router();
+    loadRoutes = express.Router(),
+    authRoutes = express.Router();
 
   //= ========================
   // Accidents Routes
@@ -36,7 +38,13 @@ module.exports = function (app) {
   //= ========================
   // Login Routes
   //= ========================
+  apiRoutes.use('/auth', authRoutes);
 
+  // Login
+  authRoutes.post('/login', AuthController.login);
+
+  // Register
+  authRoutes.post('/register', AuthController.register);
 
   //= ========================
   // Loader Routes
