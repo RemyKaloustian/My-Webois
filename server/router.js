@@ -3,14 +3,16 @@ const express = require('express'),
   LoadCsvController = require('./controllers/load/csv'),
   CommentController = require('./controllers/comment'),
   config = require('./config/main'),
-  AccidentController = require('./controllers/accident');
+  AccidentController = require('./controllers/accident'),
+  AuthController = require('./controllers/authentication');
 
 module.exports = function (app) {
   // Initializing route groups
   const apiRoutes = express.Router(),
     accidentsRoutes = express.Router(),
     commentsRoutes = express.Router(),
-    loadRoutes = express.Router();
+    loadRoutes = express.Router(),
+    authRoutes = express.Router();
 
   //= ========================
   // Accidents Routes
@@ -33,6 +35,16 @@ module.exports = function (app) {
   accidentsRoutes.delete('/:id', AccidentController.deleteAccident);
   // - -----------------------
 
+  //= ========================
+  // Login Routes
+  //= ========================
+  apiRoutes.use('/auth', authRoutes);
+
+  // Login
+  authRoutes.post('/login', AuthController.login);
+
+  // Register
+  authRoutes.post('/register', AuthController.register);
 
   //= ========================
   // Loader Routes

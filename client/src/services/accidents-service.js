@@ -13,7 +13,7 @@ export function insertAccident(accidentObj, type, severity) {
     let newAccidentObj = {
         longitude: accidentObj.lng,
         latitude: accidentObj.lat,
-        seriousness :severity ,
+        seriousness: severity,
         type: type
     };
     let options = {method: 'POST', body: JSON.stringify(newAccidentObj), headers: headers};
@@ -51,8 +51,11 @@ export function getAllAccidents() {
 
 
 export function getNearbyAccidents(longitude, latitude) {
-        fetch(API + 'accidents?longitude='+longitude+'&latitude='+latitude)
-        .then(res => res.json())
+    fetch(API + 'accidents?longitude=' + longitude + '&latitude=' + latitude)
+        .then(res => {
+            console.log(res);
+            return res.json()
+        })
         .then(data => {
                 let res = [];
                 for (let e of data) {
@@ -64,6 +67,11 @@ export function getNearbyAccidents(longitude, latitude) {
                     res.push(accident);
                 }
                 DataStore.instance.fillAccidents(res);
+                console.log('NEarby', res)
+                if (res.length < 3 ) {
+                    getAllOrNearby();
+                }
+
             }
         )
 
@@ -117,7 +125,6 @@ export function reportAccident(accidentId) {
     fetch(API + 'accidents/' + accidentId + '/remove', {method: 'PUT', headers: headers})
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             getAllOrNearby();
         })
         .catch(e => console.log(e))
@@ -125,10 +132,9 @@ export function reportAccident(accidentId) {
 }
 
 export function getAllOrNearby() {
-    if(DataStore.instance.getAll() < 5)
+    if (DataStore.instance.getAll().length < 3)
         getAllAccidents();
-    else if(DataStore.instance._currentPosition) {
-        console.log(DataStore.instance._currentPosition);
+    else if (DataStore.instance._currentPosition) {
         getNearbyAccidents(DataStore.instance._currentPosition.lng, DataStore.instance._currentPosition.lat);
     }
     else
