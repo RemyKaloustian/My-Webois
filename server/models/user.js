@@ -14,5 +14,5 @@ const UserSchema = new Schema({
     }
 });
 
-module.exports = mongoose.mode('User', UserSchema)
+module.exports = mongoose.mode('User', UserSchema);
 

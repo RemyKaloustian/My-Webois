@@ -33,6 +33,10 @@ module.exports = function (app) {
   accidentsRoutes.delete('/:id', AccidentController.deleteAccident);
   // - -----------------------
 
+  //= ========================
+  // Login Routes
+  //= ========================
+
 
   //= ========================
   // Loader Routes
