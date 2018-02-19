@@ -53,7 +53,6 @@ export function getAllAccidents() {
 export function getNearbyAccidents(longitude, latitude) {
     fetch(API + 'accidents?longitude=' + longitude + '&latitude=' + latitude)
         .then(res => {
-            console.log(res);
             return res.json()
         })
         .then(data => {
@@ -67,10 +66,10 @@ export function getNearbyAccidents(longitude, latitude) {
                     res.push(accident);
                 }
                 DataStore.instance.fillAccidents(res);
-                console.log('NEarby', res)
-                if (res.length < 3 ) {
+                if (res.length < 3) {
                     getAllOrNearby();
                 }
+
 
             }
         )
@@ -139,5 +138,23 @@ export function getAllOrNearby() {
     }
     else
         getAllAccidents()
+}
+
+export function managerConnection(name, password){
+    let content = {
+        username: name,
+        password: password
+    };
+    fetch(API + 'auth/login', {method: 'POST', headers: headers, body: JSON.stringify(content)})
+        .then(res => res.json())
+        .then(data =>
+        {
+                DataStore.instance._userConnected = data.success;
+        })
+        .catch(e => {
+            console.log(e);
+            DataStore.instance._userConnected = false;
+        })
+
 }
 
