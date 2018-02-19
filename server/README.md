@@ -5,10 +5,12 @@
 * [Accidents API](./docs/accidents.md)
 * [Load Files API](./docs/load.md)
 * [Comments API](./docs/comments.md)
+* [Authentication API](./docs/authentication.md)
 
 ## Requirements
 
 You must have **Mongo** and **npm** installed on your computer.
+Please keep in mind that, depending on your installation, you might need to pass some commands under a **sudo** user.
 
 ## Start the server
 
