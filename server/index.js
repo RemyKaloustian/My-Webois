@@ -28,6 +28,7 @@ if (process.env.NODE_ENV != config.test_env) {
   server = app.listen(config.test_port);
 }
 
+app.disable('etag');
 
 // Setting up basic middleware for all Express requests
 app.use(bodyParser.urlencoded({
