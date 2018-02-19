@@ -8,6 +8,8 @@ const geocoder = NodeGeocoder({
     apiKey: 'AIzaSyA3uzHW5SYfkkpBPEguB7hJlTqCB9BUTas',
 });
 
+// TODO: Replace Maps ApiKey because Google does not work anymore for this key.
+
 exports.getOneAccidentById = function (req, res, next) {
     if (tools.isNullOrUndefined(req.params.id)) {
         return res.status(400).json({
