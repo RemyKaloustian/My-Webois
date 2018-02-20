@@ -16,6 +16,115 @@
         "address": "95 Avenue Roumanille, 06410 Biot, France",
         "type": 1,
         "seriousness": 0
-    }
+    },
 
+    {
+        "location": [
+            7.119139903988412,
+            43.588055644460866
+        ],
+        "address": "23 Boulevard Général Vautrin, 06600 Antibes, France",
+        "type": 2,
+        "seriousness": 3
+    },
+
+    {
+        "location": [
+            7.127508397424549,
+            43.58883427351402
+        ],
+        "address": "50 Avenue du 11 Novembre, 06600 Antibes, France",
+        "type": 2,
+        "seriousness": 3
+    },
+
+    {
+        "location": [
+            7.102480459069511,
+            43.57229382497237
+        ],
+        "address": "81 Boulevard Raymond Poincaré, 06160 Antibes, France",
+        "type": 0,
+        "seriousness": 2
+    },
+
+    {
+        "location": [
+            7.125464308846176,
+            43.612517713254846
+        ],
+        "address": "2148 Route de Biot, 06600 Antibes, France",
+        "type": 0,
+        "seriousness": 2
+    },
+
+    {
+        "location": [
+            7.088266716188855,
+            43.60281325232871
+        ],
+        "address": "2444-2602 Chemin de Saint-Claude, 06600 Antibes, France",
+        "type": 3,
+        "seriousness": 1
+    },
+
+    {
+        "location": [
+            7.0636103229869605,
+            43.61656760421127
+        ],
+        "address": "1560 Route des Lucioles, 06410 Biot, France",
+        "type": 0,
+        "seriousness": 3
+    },
+
+    {
+        "location": [
+            7.063684037076769,
+            43.62099685726605
+        ],
+        "address": "Carrefour Eganaude, 06410 Biot, France",
+        "type": 2,
+        "seriousness": 0
+    },
+
+    {
+        "location": [
+            7.054766979718693,
+            43.57874990773667
+        ],
+        "address": "3 Bd Maurice Rouvier, 06220 Vallauris, France",
+        "type": 1,
+        "seriousness": 2
+    },
+
+    {
+        "location": [
+            7.022869793499012,
+            43.55601148316286
+        ],
+        "address": "22 Traverse Mimont, 06400 Cannes, France",
+        "type": 2,
+        "seriousness": 2
+    },
+
+    {
+        "location": [
+            7.020466534221782,
+            43.556260289026476
+        ],
+        "address": "13 Chemin Saint-Nicolas, 06400 Cannes, France",
+        "type": 3,
+        "seriousness": 1
+    },
+
+    {
+        "location": [
+            7.020466534221896,
+            43.576285791050594
+        ],
+        "address": "Rue de l'Église, 06110 Le Cannet, France",
+        "type": 3,
+        "seriousness": 1
+    }
 ]
