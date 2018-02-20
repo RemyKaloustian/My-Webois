@@ -1,0 +1,19 @@
+[{
+        "location": [
+            7.074767,
+            43.616735
+        ],
+        "type": 2,
+        "seriousness": 1
+    },
+
+    {
+        "location": [
+            7.074204,
+            43.618320
+        ],
+        "type": 1,
+        "seriousness": 0
+    }
+
+]
