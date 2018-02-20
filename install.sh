@@ -13,7 +13,7 @@ npm install
 echo "Done."
 
 cd ../server
-echo "Installing node dependencies for the server side.//"
+echo "Installing node dependencies for the server side..."
 npm install
 echo "Done."
 
