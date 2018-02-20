@@ -153,7 +153,8 @@ const styles = {
         left: '100%',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        overflow: 'hidden'
 
     },
     accidentDetailContent: {
@@ -188,7 +189,8 @@ const styles = {
         color: '#f5f5f5',
         fontFamily: 'Gothamlight',
         height: '50px',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        marginBottom: '3em'
     },
     backButton: {
         width: '50%',
