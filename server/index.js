@@ -7,7 +7,8 @@ const express = require('express'),
   mongoose = require('mongoose'),
   mongo_express = require('mongo-express/lib/middleware'),
   mongo_express_config = require('./config/mongo_express.config'),
-  config = require('./config/main.config');
+  config = require('./config/main.config'),
+  databaseHelper = require('./tools/database');
 
 // Database Setup
 mongoose.Promise = Promise;
@@ -16,6 +17,8 @@ mongoose.Promise = Promise;
 let server;
 if (process.env.NODE_ENV != config.test_env) {
   mongoose.connect(config.databaseUrl + config.database, { useMongoClient: true });
+
+  databaseHelper.flushDatabaseAtStart();
 
   server = app.listen(config.port);
   console.log(`Your server is running on port ${config.port}.`);
