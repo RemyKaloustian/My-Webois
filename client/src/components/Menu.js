@@ -19,7 +19,7 @@ class Menu extends Component {
             this.props.onMapViewClick();
             this.setState({currentView: MAPVIEW});
         }
-    }
+    };
 
     render() {
         return (
@@ -56,11 +56,11 @@ const styles = {
     },
     buttonMenu: {
         height: '100%',
-        'background-color': '#0050ef',
+        backgroundColor: '#0050ef',
         color: 'white',
-        'font-size': '1.2rem',
-        'font-family': 'GothamLight, sans-serif',
-        'transition-duration': '0.3s',
+        fontSize: '1.2rem',
+        fontFamily: 'GothamLight, sans-serif',
+        transitionDuration: '0.3s',
     },
     bottomMenu:{
         position: 'absolute',

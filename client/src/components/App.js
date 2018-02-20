@@ -26,11 +26,15 @@ class App extends Component {
     }
 
     showManagerView = () => {
-        //Showing the manager view, filling it with accidents, changing the button text
-        this.refs.managerViewComponent.show();
-        this.refs.managerViewComponent.fill(DataStore.instance.getAll());
-        $('#left-menu').text("Map view");
-    }
+        if(DataStore.instance._userConnected) {
+            //Showing the manager view, filling it with accidents, changing the button text
+            this.refs.managerViewComponent.show();
+            this.refs.managerViewComponent.fill(DataStore.instance.getAll());
+            $('#left-menu').text("Map view");
+        }else{
+            this.setState({openModal: true});
+        }
+    };
 
     showMapView = () => {
         //Showing the map, filling it with accidents, hiding the manager view, changing the button text
@@ -39,7 +43,7 @@ class App extends Component {
         this.refs.managerViewComponent.hide();
         $('#left-menu').text("Manager view");
 
-    }
+    };
 
     showNewAccident = () => {
         this.refs.accidentPopupComponent.show();
