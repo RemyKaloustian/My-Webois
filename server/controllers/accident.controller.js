@@ -81,7 +81,7 @@ getNearestAccident = function (req, res, next) {
             $near: coords,
             $maxDistance: maxDistance
         }
-    }).exec(function (err, accidents) {
+    }).populate('comments').exec(function (err, accidents) {
         if (err) {
             return res.status(500).json(err);
         }
