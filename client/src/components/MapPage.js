@@ -60,6 +60,11 @@ export default class MapPage extends React.Component {
         //If the current location somehow does not work, will center the map on Ethiopia
         this.setState({center: {lat: 8.983491, lng: 38.745232}, markers: []});
         // !!!! Make map operations in _handleMapMounted
+        let url_string = document.location;
+        let url = new URL(url_string);
+        let demo = url.searchParams.get("demo");
+        if(demo)
+            this._isDemo = true;
     }
 
     //Promise to get the current position
