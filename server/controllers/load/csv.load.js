@@ -7,7 +7,7 @@ const Accident = require('../../models/accident.model'),
 
 const geocoder = NodeGeocoder({
     provider: 'google',
-    apiKey: 'AIzaSyA3uzHW5SYfkkpBPEguB7hJlTqCB9BUTas',
+    apiKey: config.googleApiKey,
 });
 
 isLatOrLongCorrect = function (lat, lng) {
