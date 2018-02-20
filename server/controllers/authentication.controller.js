@@ -24,16 +24,19 @@ exports.login = function (req, res, next) {
         message: 'Error while fetching user data.'
       });
     }
-    const auth = verifyCredentials(params, credentials);
-    if (auth) {
-      return res.status(200).json({
-        success: auth,
-        message: 'Login successful.'
-      });
+    try {
+      const auth = verifyCredentials(params, credentials);
+      if (auth) {
+        return res.status(200).json({
+          success: auth,
+          message: 'Login successful.'
+        });
+      }
+    } catch (logFail) {
     }
 
     return res.status(404).json({
-      success: auth,
+      success: false,
       message: 'Login failed.'
     });
   });
@@ -76,3 +79,4 @@ exports.register = function (req, res, next) {
 
   return res.status(404);
 };
+
