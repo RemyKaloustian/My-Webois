@@ -45,6 +45,7 @@ export function getAllAccidents() {
                     res.push(accident);
                 }
                 DataStore.instance.fillAccidents(res);
+                getAllOrNearby();
             }
         )
 }
@@ -66,7 +67,7 @@ export function getNearbyAccidents(longitude, latitude) {
                     res.push(accident);
                 }
                 DataStore.instance.fillAccidents(res);
-                if (res.length < 3) {
+                if (res.length < 1) {
                     getAllOrNearby();
                 }
 
@@ -131,7 +132,7 @@ export function reportAccident(accidentId) {
 }
 
 export function getAllOrNearby() {
-    if (DataStore.instance.getAll().length < 3)
+    if (DataStore.instance.getAll().length < 1)
         getAllAccidents();
     else if (DataStore.instance._currentPosition) {
         getNearbyAccidents(DataStore.instance._currentPosition.lng, DataStore.instance._currentPosition.lat);
@@ -145,15 +146,17 @@ export function managerConnection(name, password){
         username: name,
         password: password
     };
-    fetch(API + 'auth/login', {method: 'POST', headers: headers, body: JSON.stringify(content)})
+    return fetch(API + 'auth/login', {method: 'POST', headers: headers, body: JSON.stringify(content)})
         .then(res => res.json())
         .then(data =>
         {
                 DataStore.instance._userConnected = data.success;
+                return true;
         })
         .catch(e => {
             console.log(e);
             DataStore.instance._userConnected = false;
+            return false;
         })
 
 }

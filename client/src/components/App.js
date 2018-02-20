@@ -15,7 +15,7 @@ class App extends Component {
 
 
     state = {
-        openModal: true,
+        openModal: false,
         user: '',
         password: ''
     };
@@ -26,12 +26,12 @@ class App extends Component {
     }
 
     showManagerView = () => {
-        if(DataStore.instance._userConnected) {
+        if (DataStore.instance._userConnected) {
             //Showing the manager view, filling it with accidents, changing the button text
             this.refs.managerViewComponent.show();
             this.refs.managerViewComponent.fill(DataStore.instance.getAll());
             $('#left-menu').text("Map view");
-        }else{
+        } else {
             this.setState({openModal: true});
         }
     };
@@ -52,12 +52,17 @@ class App extends Component {
     handleChangeUser(event) {
         this.setState({user: event.target.value});
     }
+
     handleChangePassword(event) {
         this.setState({password: event.target.value});
     }
 
-    connection(){
-        managerConnection(this.state.user, this.state.password);
+    connection() {
+        managerConnection(this.state.user, this.state.password).then(
+            res => {
+                this.setState({openModal: !res});
+            }
+        );
     }
 
     render() {
@@ -73,8 +78,10 @@ class App extends Component {
                         <p onClick={() => this.setState({openModal: false})} style={styles.closeButton}>✕</p>
                         <h1 style={{fontSize: '3rem'}}>Connection Manager</h1>
                         <hr/>
-                        <input style={styles.inputCustom} type={'text'} value={this.state.user} placeholder={'Manager name...'} onChange={evt => this.handleChangeUser(evt)}/>
-                        <input style={styles.inputCustom} type={'password'} value={this.state.password} placeholder={'Password'} onChange={evt => this.handleChangePassword(evt)}/>
+                        <input style={styles.inputCustom} type={'text'} value={this.state.user}
+                               placeholder={'Manager name...'} onChange={evt => this.handleChangeUser(evt)}/>
+                        <input style={styles.inputCustom} type={'password'} value={this.state.password}
+                               placeholder={'Password'} onChange={evt => this.handleChangePassword(evt)}/>
                         <hr/>
                         <button onClick={() => this.connection()} style={styles.validateButton}>Validate</button>
                     </div>
@@ -109,7 +116,7 @@ const styles = {
         flexDirection: 'column',
         height: '100%'
     },
-    inputCustom:{
+    inputCustom: {
         width: '50%',
         height: '10%',
         borderRadius: '50px',
@@ -117,7 +124,7 @@ const styles = {
         marginBottom: '1em',
         outline: 'none'
     },
-    closeButton:{
+    closeButton: {
         position: 'absolute',
         alignSelf: 'flex-end',
         top: '1em',
@@ -129,7 +136,8 @@ const styles = {
         height: '4em',
         color: 'white',
         border: 'none',
-        borderRadius:'50px',
+        borderRadius: '50px',
         cursor: 'pointer',
+        outline: 'none'
     }
 };
