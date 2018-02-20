@@ -4,6 +4,7 @@ import {GoogleMap, Marker, withGoogleMap, withScriptjs, InfoBox} from 'react-goo
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 import AccidentDetails from './AccidentDetails';
 import DataStore from "../services/data-store";
+import {getAllOrNearby, getNearbyAccidents} from "../services/accidents-service";
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //      DON'T TOUCH THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -99,10 +100,12 @@ export default class MapPage extends React.Component {
         setInterval(() => {
             this.getLocation().then((value) => {
                 if (!this._isDemo) {
-                    let resultsFromDB = DataStore.instance.getAll(); //storing results
                     this.setState({center: value});  //centering the map on current position
                     DataStore.instance._currentPosition = value;
+
+                    let resultsFromDB = DataStore.instance.getAll(); //storing results
                     this.fill(resultsFromDB);    //Filling the markers of accidents
+
                     this.props.notifier(value, this.state.markers);   //checking if accident nearby
                 }
                 else {
@@ -168,17 +171,17 @@ export default class MapPage extends React.Component {
                     center={this.state.center}
                     onMapMounted={this._handleMapMounted}
                     onBoundsChanged={this._handleBoundsChanged}>
-                        <Marker
-                            position={{lat: this.state.center.lat, lng: this.state.center.lng}}
-                            icon={{url: 'assets/currentPosition.png'}}
-                        />
+                    <Marker
+                        position={{lat: this.state.center.lat, lng: this.state.center.lng}}
+                        icon={{url: 'assets/currentPosition.png'}}
+                    />
 
                     <MarkerClusterer
                         averageCenter
                         enableRetinaIcons
                         minimumClusterSize={3}
                         gridSize={60}>
-                        {this.state.markers.map((marker,index) => (
+                        {this.state.markers.map((marker, index) => (
                             <Marker
                                 key={index}
                                 icon={DataStore.instance._accidentTypeEnum[marker.type].image}
