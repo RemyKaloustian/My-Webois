@@ -60,8 +60,8 @@ exports.getAllAccidents = function (req, res, next) {
 getNearestAccident = function (req, res, next) {
     // console.log('--- GET NEAREST ---');
 
-    // 1.5 kms radius
-    var maxDistance = 1.5;
+    // 10 kms radius
+    var maxDistance = 10;
 
     // Convert distance by 110.57 (one degree is approximately 110.57 kilometers)
     // Thanks https://stackoverflow.com/questions/7837731/units-to-use-for-maxdistance-and-mongodb
