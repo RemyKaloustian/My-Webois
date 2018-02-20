@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import $ from "jquery";
 
 import AccidentItem from './AccidentItem';
+import DataStore from "../services/data-store";
 
 //The manager view shows the accidents in a list
 class ManagerView extends Component {
@@ -47,7 +48,7 @@ class ManagerView extends Component {
                 <div>
                     {
                         accidentSorted.map((item, i) => {
-                            return (<AccidentItem key={i} address={item.address} id={item._id} reports={item.askedRemove}/>);
+                            return (<AccidentItem key={i} severity={item.seriousness} address={item.address} image={DataStore.instance._accidentTypeEnum[item.type].image} id={item._id} reports={item.askedRemove}/>);
                         })
                     }
                 </div>
