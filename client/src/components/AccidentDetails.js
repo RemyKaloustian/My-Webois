@@ -61,7 +61,32 @@ class AccidentDetails extends Component {
         this.setState(com);
         $('#input').val('');
         this.hideInput();
-    }
+    };
+
+    severityStyle = (severityId) => {
+        let style = {
+            fontSize: '1em',
+            fontWeight: 'bold'
+        };
+        switch (severityId) {
+            case 0:
+                style.color = '#20bf6b';
+                break;
+            case 1:
+                style.color = '#8854d0';
+                break;
+            case 2:
+                style.color = '#fa8231';
+                break;
+            case 3:
+                style.color = '#eb3b5a';
+                break;
+            default:
+                style.color = '#eb3b5a';
+                break;
+        }
+        return style;
+    };
 
     render() {
         let name = '';
@@ -70,8 +95,10 @@ class AccidentDetails extends Component {
 
         return (<div id='accident-detail' style={styles.accidentDetail}>
             <div id='accident-detail-content' style={styles.accidentDetailContent}>
-                <h3 style={styles.titleAccidentDetail}>🔥{name},
-                    {DataStore.instance._severityEnum[this.state.marker.seriousness]}🔥</h3>
+                <h3 style={styles.titleAccidentDetail}>🔥{name}🔥
+                    <p style={this.severityStyle(this.state.marker.seriousness)}>{DataStore.instance._severityEnum[this.state.marker.seriousness]}</p>
+                </h3>
+
                 <h4 style={styles.subTitleAccidentDetail}>{this.state.marker.address}</h4>
                 <h4 style={styles.subTitleAccidentDetail}>{this.state.marker.date}</h4>
 
