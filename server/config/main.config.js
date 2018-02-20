@@ -41,5 +41,7 @@ module.exports = {
     'Véhicule et piétons',
     'Vélo et véhicule',
     'Vélo et piéton',
-  ]
+  ],
+
+  googleApiKey: 'AIzaSyDlIz2hS3o1KObFIWgctUGks_eG_1tDzfY'
 };
