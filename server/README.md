@@ -28,15 +28,16 @@ And finally, launch the API with:
 $ > ./scripts/start_server.sh
 ```
 
-## Side notes
+## Default data
+
+By default, we load "only" two accidents and one user _(admin, password: admin)_ in the database.
+
+If you want to load the CSV Government file for the 06 department, you can check the script [here](./scripts/load_csv_06.sh). This script needs the server to be started, because it works this way: the server hosts a route, and the script sends a request through curl to trigger the process. Please note that this is __really heavy__ on Google’s side, so please use with caution.
+
+## Tests
 
 In order to run the tests for the API, you need to cast the command “npm test” from within the server directory.
 It is important to take into account that the database needs to be started with the associated script start_server.sh.
-
-The account created by default when you initialize the database is **“admin”** as username and **“admin”** as password.
-
-In the scripts folder in the server directory, you have access to a special script that loads the accidents for the Alpes-Maritimes department according to the csv files from the government. 
-It needs the server to be started, because it works this way: the server hosts a route, and the script sends a request through curl to trigger the process. Please note that this is really heavy on Google’s side, so please use with caution.
 
 ## About
 
