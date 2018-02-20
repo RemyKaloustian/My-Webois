@@ -13,8 +13,8 @@ chai.use(chaiHttp);
 let server = null;
 
 const u = {
-    username: 'userTest',
-    password: 'whatever'
+  username: 'userTest',
+  password: 'whatever'
 };
 
 getApiPath = function () {
@@ -36,19 +36,27 @@ describe('Authentication', () => {
 
   /* REAL TESTING */
   describe('Register and login', () => {
-
     it('Registering userTest', (done) => {
       server.post(getApiPath() + '/auth/register')
-          .send(u)
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.have.property('username').eql(u.username);
-            res.body.should.have.property('password').eql(u.password);
-            res.body.should.have.property('_id');
-            done();
-          });
+        .send(u)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('username').eql(u.username);
+          res.body.should.have.property('password').eql(u.password);
+          res.body.should.have.property('_id');
+          done();
+        });
     });
 
-
+    it('Login userTest', (done) => {
+      server.post(getApiPath() + '/auth/login')
+        .send(u)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('success');
+          res.body.should.have.property('message');
+          done();
+        });
+    });
   });
 });
