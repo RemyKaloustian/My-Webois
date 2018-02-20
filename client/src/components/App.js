@@ -18,7 +18,7 @@ class App extends Component {
         openModal: true,
         user: '',
         password: ''
-    }
+    };
 
     componentDidMount() {
         this.showMapView(); //Showing the map on launch
@@ -45,8 +45,11 @@ class App extends Component {
         this.refs.accidentPopupComponent.show();
     };
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleChangeUser(event) {
+        this.setState({user: event.target.value});
+    }
+    handleChangePassword(event) {
+        this.setState({password: event.target.value});
     }
 
     connection(){
@@ -62,12 +65,14 @@ class App extends Component {
                 <Modal
                     isOpen={this.state.openModal}
                     contentLabel="Modal">
-                    <div style={styles.modal}>
-                        <h1>Connection</h1>
-                        <p>Manager</p>
-                        <input type={'text'} value={this.state.user} placeholder={'Manager name...'} onChange={this.handleChange}/>
-                        <input type={'password'} value={this.state.password} placeholder={'Password'} onChange={this.handleChange}/>
-                        <button onClick={this.connection}>Validate</button>
+                    <div style={styles.modalContent}>
+                        <p onClick={() => this.setState({openModal: false})} style={styles.closeButton}>✕</p>
+                        <h1 style={{fontSize: '3rem'}}>Connection Manager</h1>
+                        <hr/>
+                        <input style={styles.inputCustom} type={'text'} value={this.state.user} placeholder={'Manager name...'} onChange={evt => this.handleChangeUser(evt)}/>
+                        <input style={styles.inputCustom} type={'password'} value={this.state.password} placeholder={'Password'} onChange={evt => this.handleChangePassword(evt)}/>
+                        <hr/>
+                        <button onClick={() => this.connection()} style={styles.validateButton}>Validate</button>
                     </div>
                 </Modal>
 
@@ -92,12 +97,35 @@ export default App;
 
 
 const styles = {
-    modal: {
+    modalContent: {
         display: 'flex',
         flex: '1 1 auto',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
         height: '100%'
+    },
+    inputCustom:{
+        width: '50%',
+        height: '10%',
+        borderRadius: '50px',
+        border: '1px solid black',
+        marginBottom: '1em',
+        outline: 'none'
+    },
+    closeButton:{
+        position: 'absolute',
+        alignSelf: 'flex-end',
+        top: '1em',
+        cursor: 'pointer'
+    },
+    validateButton: {
+        backgroundColor: '#0050ef',
+        width: '15em',
+        height: '4em',
+        color: 'white',
+        border: 'none',
+        borderRadius:'50px',
+        cursor: 'pointer',
     }
 };
