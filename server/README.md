@@ -15,6 +15,7 @@ Please keep in mind that, depending on your installation, you might need to pass
 ## Start the server
 
 The first thing you need to do is an **`npm install`** inside this folder.
+(Can be skipped if you used the **`install.sh`** that is in the parent directory.)
 Then, start the database thanks to the script:
 
 ```
