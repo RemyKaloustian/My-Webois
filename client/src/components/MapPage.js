@@ -63,7 +63,7 @@ export default class MapPage extends React.Component {
         let url_string = document.location;
         let url = new URL(url_string);
         let demo = url.searchParams.get("demo");
-        if(demo)
+        if (demo)
             this._isDemo = true;
     }
 
@@ -138,12 +138,8 @@ export default class MapPage extends React.Component {
         let id = Math.floor(Math.random() * (20000 - 0) + 0);
         let updatedMarkers = this.state.markers;
         updatedMarkers.push({id: id, latitude: this.state.center.lat, longitude: this.state.center.lng});
-        console.log(this.state.center);
-        console.log(this.state.markers);
-        console.log(this.state);
         this.setState({markers: updatedMarkers});
-        console.log(" New accident at " + this.state.center.lat + " & " + this.state.center.lng);
-    }
+    };
 
 //using the results from the db and filling the markers
     fill = (results) => {
@@ -156,15 +152,26 @@ export default class MapPage extends React.Component {
 
     clickMarker = (marker) => {
         this.refs.accidentDetails.show(marker);
-    }
+    };
+
+    disconnect = () => {
+        DataStore.instance._userConnected = false;
+    };
 
     render() {
         let width = $(window).width();
         let height = $(window).height();
 
+
         //Some serious shit is going down dere
         return (
             <div>
+                {DataStore.instance._userConnected ?
+                    <div style={styles.disconnect} onClick={() => this.disconnect()}>
+                        <img src={"../../assets/icons/logout.png"}></img>
+                    </div>
+                    : null}
+
                 <AccidentDetails ref="accidentDetails"/>
 
                 <GoogleMapsWrapper
@@ -214,3 +221,20 @@ export default class MapPage extends React.Component {
         )
     }
 }
+
+const styles = {
+    disconnect: {
+        backgroundColor: '#be272b',
+        borderRadius: '50px',
+        position: 'absolute',
+        top: '5px',
+        right: '5px',
+        zIndex: '20',
+        height: '3em',
+        width: '3em',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer'
+    }
+};
