@@ -28,6 +28,10 @@ And finally, launch the API with:
 $ > ./scripts/start_server.sh
 ```
 
+## Manipulate the database
+
+You can go to [http://localhost:4000/](http://localhost:4000) when the server is started to manipulate the database. We use [mongo-express](https://github.com/mongo-express/mongo-express).
+
 ## Default data
 
 By default, we load "only" two accidents and one user _(admin, password: admin)_ in the database.
