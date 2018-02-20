@@ -47,6 +47,7 @@ class NearbyAccidentNotifier extends Component {
                 body: body,
                 icon: type.image
             };
+            $('#notifier-sound')[0].play();
             let notification = new Notification(type.name, options);
         }
 
