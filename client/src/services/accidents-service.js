@@ -67,7 +67,7 @@ export function getNearbyAccidents(longitude, latitude) {
                     res.push(accident);
                 }
                 DataStore.instance.fillAccidents(res);
-                if (res.length < 1) {
+                if (res.length < 3) {
                     getAllOrNearby();
                 }
 
@@ -132,7 +132,7 @@ export function reportAccident(accidentId) {
 }
 
 export function getAllOrNearby() {
-    if (DataStore.instance.getAll().length < 1)
+    if (DataStore.instance.getAll().length < 3)
         getAllAccidents();
     else if (DataStore.instance._currentPosition) {
         getNearbyAccidents(DataStore.instance._currentPosition.lng, DataStore.instance._currentPosition.lat);

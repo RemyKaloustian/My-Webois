@@ -4,7 +4,6 @@ import {GoogleMap, Marker, withGoogleMap, withScriptjs, InfoBox} from 'react-goo
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 import AccidentDetails from './AccidentDetails';
 import DataStore from "../services/data-store";
-import {getAllOrNearby, getNearbyAccidents} from "../services/accidents-service";
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //      DON'T TOUCH THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -116,6 +115,10 @@ export default class MapPage extends React.Component {
                 else {
                     if (this._currentPositionIndex < this._demoPositions.length) {
                         this.setState({center: this._demoPositions[this._currentPositionIndex]});
+                        DataStore.instance._currentPosition = this.state.center;
+
+                        this.fill(DataStore.instance.getAll())
+
                         this.props.notifier(this.state.center, this.state.markers);
                         this._currentPositionIndex++;
                     }

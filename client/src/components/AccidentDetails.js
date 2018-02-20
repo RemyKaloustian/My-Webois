@@ -42,9 +42,10 @@ class AccidentDetails extends Component {
     }
 
     showCommentInput = () => {
+
         $('#accident-detail-content').hide();
         $('#input-container').show();
-    }
+    };
 
     hideInput() {
         $('#input-container').hide();
@@ -89,6 +90,7 @@ class AccidentDetails extends Component {
     };
 
     render() {
+
         let name = '';
         if(DataStore.instance._accidentTypeEnum[this.state.marker.type])
              name =  DataStore.instance._accidentTypeEnum[this.state.marker.type].name;
@@ -124,8 +126,7 @@ class AccidentDetails extends Component {
 
             </div>
             <div id="input-container" style={styles.inputContainer}>
-                        <textarea id="input" rows="15" cols="50" style={styles.textarea}>
-                            Add a comment...
+                        <textarea id="input" rows="15" cols="50" style={styles.textarea} placeholder={"Add a comment..."}>
                         </textarea>
                 <br/>
                 <button style={styles.accidentButton} id="validate-comment" onClick={() => this.insertComment()}>Ok
@@ -149,7 +150,10 @@ const styles = {
         backgroundColor: '#f5f5f5',
         color: '#0050ef',
         fontFamily: 'GothamLight',
-        left: '100%'
+        left: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
 
     },
     accidentDetailContent: {
@@ -203,9 +207,8 @@ const styles = {
         display: 'table',
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: '80%',
+        width: '100%',
         fontSize: '1.2rem',
-        border:'none',
         overflow: 'auto'
     },
     reportButton: {

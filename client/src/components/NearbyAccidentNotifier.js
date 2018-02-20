@@ -1,98 +1,86 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import $ from 'jquery';
+import DataStore from "../services/data-store";
 
 
 //Panel that shows only when passing by an accident
-class NearbyAccidentNotifier extends Component
-{
-    state = { notified:[], accident:'', address:'' };
-    componentDidMount()
-    {
+class NearbyAccidentNotifier extends Component {
+    state = {notified: [], accident: '', address: ''};
+
+    componentDidMount() {
         $('#nearby-accident-popup').css('width', $(window).width());
         $('#nearby-accident-popup').css('height', $(window).height());
-        $('#nearby-accident-popup').css('top', '-'+ $(window).height() + 'px');
-        
+        $('#nearby-accident-popup').css('top', '-' + $(window).height() + 'px');
+
     }
 
     //The accidents are passed, in markers form (??? , for right now, yes, marker form)
-    checkNearbyAccidents = (currentPosition, accidentsList) =>
-    {
-        let debug  = false;
-        if(debug)
-        {
-            console.log('In checkNearbyAccidents');
-            console.log('Received current position = ' );
-            console.log( currentPosition);
-            console.log('Received accidentsList = ');
-            console.log(accidentsList);
-        }
-       
-
-        for (let index = 0; index < accidentsList.length; index++) 
-        {
-            if((Math.abs(accidentsList[index].latitude - currentPosition.lat) <= 0.000008) && (Math.abs(accidentsList[index].longitude - currentPosition.lng)) <= 0.0009)
-            {
-                if(!(this.state.notified.indexOf(accidentsList[index].id) > -1))
-                {
-                    console.log("this one not in state");
+    checkNearbyAccidents = (currentPosition, accidentsList) => {
+        for (let index = 0; index < accidentsList.length; index++) {
+            if ((Math.abs(accidentsList[index].latitude - currentPosition.lat) <= 0.000008) && (Math.abs(accidentsList[index].longitude - currentPosition.lng)) <= 0.0009) {
+                if (!(this.state.notified.indexOf(accidentsList[index].id) > -1)) {
                     let not = this.state.notified;
                     not.push(accidentsList[index].id);
-                    this.setState({notified : not, accident:accidentsList[index].type, address:accidentsList[index].address});
+                    this.setState({
+                        notified: not,
+                        accident: accidentsList[index],
+                        address: accidentsList[index].address
+                    });
                     this.notifyNearByAccident();
-                }               
-            }            
+                }
+            }
         }
     }
 
-    showNearbyAccidentPopup = () =>
-    {
-        console.log("Showing an accident nearby");
-       
-        $('#nearby-accident-popup').show();
-        $('#nearby-accident-popup').animate({
-            top: '-5'
-        }, 500);
+    showNearbyAccidentPopup = () => {
+        if (!("Notification" in window)) {
+            alert("Ce navigateur ne supporte pas les notifications desktop");
+        }
 
-        let popuptime = 3800//normal case, 3800
-        let self = this;
-        setTimeout(function(){
-            self.hideNearbyAccidentPopup();
-        }, popuptime);
-        
-    }
+        // Voyons si l'utilisateur est OK pour recevoir des notifications
+        else if (Notification.permission === "granted") {
+            // Si c'est ok, créons une notification
+            let type = DataStore.instance._accidentTypeEnum[this.state.accident.type];
+            let severity = DataStore.instance._severityEnum[this.state.accident.seriousness];
+            let body = 'Severity :' + severity + '\n' + this.state.accident.address;
+            let options = {
+                body: body,
+                icon: type.image
+            };
+            let notification = new Notification(type.name, options);
+        }
 
-    hideNearbyAccidentPopup = () =>
-    {
-        $('#nearby-accident-popup').animate({
-            top: '-'+$(window).height()
-        }, 200, function(){
-            $('#nearby-accident-popup').hide();
-        });
-    }
+        // Sinon, nous avons besoin de la permission de l'utilisateur
+        // Note : Chrome n'implémente pas la propriété statique permission
+        // Donc, nous devons vérifier s'il n'y a pas 'denied' à la place de 'default'
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
 
-    notifyNearByAccident = () =>
-    {
-        console.log("Playing notifier sound");
-        //$('#notifier-sound')[0].play();
+                // Quelque soit la réponse de l'utilisateur, nous nous assurons de stocker cette information
+                if (!('permission' in Notification)) {
+                    Notification.permission = permission;
+                }
+
+                // Si l'utilisateur est OK, on crée une notification
+                if (permission === "granted") {
+                    let notification = new Notification("You have accepted notifications");
+                }
+            });
+        }
+    };
+
+    notifyNearByAccident = () => {
         this.showNearbyAccidentPopup();
-    }
+    };
 
 
-    render()
-    {
+    render() {
+
         return (
             <div id="nearby-accident-notifier">
                 <audio id="notifier-sound">
-                    <source src="assets/sound/warning.mp3" type="audio/mpeg"/>
+                    <source src="../../assets/sound/warning.mp3" type="audio/mpeg"/>
                 </audio>
-                <div id="nearby-accident-popup">
-                    <div id="nearby-accident-content">
-                        <h3>{this.state.accident}</h3>
-                        <br/>
-                        <br/>
-                        <p>{this.state.address}</p>
-                    </div>
-                </div>
             </div>
         );
     }
